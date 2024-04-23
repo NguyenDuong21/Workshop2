@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Engineering Immersion Day on AWS System Manager</title>
+    <link>//localhost:1313/</link>
+    <description>Recent content in Data Engineering Immersion Day on AWS System Manager</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Jan 1970 08:33:41 +0800</lastBuildDate>
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Port Forwarding</title>
+      <link>//localhost:1313/5-portfwd/_index.vi/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/5-portfwd/_index.vi/</guid>
+      <description>Port Forwarding là mốt cách thức hữu ích để chuyển hướng lưu lượng mạng từ 1 địa chỉ IP - Port này sang 1 địa chỉ IP - Port khác. Với Port Forwarding chúng ta có thể truy cập một EC2 instance nằm trong private subnet từ máy trạm của chúng ta.&#xA;Chúng ta sẽ cấu hình Port Forwarding cho kết nối RDP giữa máy của mình với Private Windows Instance nằm trong private subnet mà chúng ta đã tạo cho bài thực hành này.</description>
+    </item>
+    <item>
+      <title>Dọn dẹp tài nguyên  </title>
+      <link>//localhost:1313/6-cleanup/_index.vi/</link>
+      <pubDate>Thu, 01 Jan 1970 08:33:41 +0800</pubDate>
+      <guid>//localhost:1313/6-cleanup/_index.vi/</guid>
+      <description>Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.&#xA;Xóa EC2 instance Truy cập giao diện quản trị dịch vụ EC2 Click Instances. Click chọn cả 2 instance Public Linux Instance và Private Windows Instance. Click Instance state. Click Terminate instance, sau đó click Terminate để xác nhận. Truy cập giao diện quản trị dịch vụ IAM Click Roles.</description>
+    </item>
+  </channel>
+</rss>

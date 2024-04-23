@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Connect to EC2 servers on AWS System Manager</title>
+    <link>//localhost:1313/3-accessibilitytoinstances/</link>
+    <description>Recent content in Connect to EC2 servers on AWS System Manager</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="//localhost:1313/3-accessibilitytoinstances/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tạo kết nối đến máy chủ EC2</title>
+      <link>//localhost:1313/3-accessibilitytoinstances/_index.vi/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/3-accessibilitytoinstances/_index.vi/</guid>
+      <description>Trong bước này, chúng ta sẽ thực hiện tạo kết nối đến các máy chủ EC2 của chúng ta, nằm trong cả public và private subnet.&#xA;Nội dung 3.1. Tạo Kết nối đến máy chủ EC2 Public 3.2. Tạo Kết nối đến máy chủ EC2 Private</description>
+    </item>
+  </channel>
+</rss>

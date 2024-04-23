@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Create VPC on AWS System Manager</title>
+    <link>//localhost:1313/2-prerequiste/2.1-createec2/2.1.1-createvpc/</link>
+    <description>Recent content in Create VPC on AWS System Manager</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="//localhost:1313/2-prerequiste/2.1-createec2/2.1.1-createvpc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tạo VPC </title>
+      <link>//localhost:1313/2-prerequiste/2.1-createec2/2.1.1-createvpc/_index.vi/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/2-prerequiste/2.1-createec2/2.1.1-createvpc/_index.vi/</guid>
+      <description>Tạo VPC Lab VPC Truy cập giao diện quản trị dịch vụ VPC Click Your VPC. Click Create VPC. Tại trang Create VPC. Tại mục Name tag điền Lab VPC. Tại mục IPv4 CIDR điền : 10.10.0.0/16. Click Create VPC. </description>
+    </item>
+  </channel>
+</rss>

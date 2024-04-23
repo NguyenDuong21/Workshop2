@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Preparing VPC and EC2 on AWS System Manager</title>
+    <link>//localhost:1313/2-prerequiste/2.1-createec2/</link>
+    <description>Recent content in Preparing VPC and EC2 on AWS System Manager</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="//localhost:1313/2-prerequiste/2.1-createec2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chuẩn bị VPC và EC2</title>
+      <link>//localhost:1313/2-prerequiste/2.1-createec2/_index.vi/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/2-prerequiste/2.1-createec2/_index.vi/</guid>
+      <description>Trong bước này, chúng ta sẽ cần tạo một VPC có 2 subnet public / private. Sau đó tạo 1 EC2 Instance Linux nằm trong public subnet, 1 EC2 Instance Windows nằm trong private subnet.&#xA;Tổng quan kiến trúc sau khi các bạn hoàn tất bước này sẽ như sau:&#xA;Để tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :</description>
+    </item>
+  </channel>
+</rss>
