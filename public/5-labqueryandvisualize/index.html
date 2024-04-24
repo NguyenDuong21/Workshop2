@@ -12,21 +12,21 @@
     <title>Lab: Query and Visualize :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1713934136" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1713934136" rel="stylesheet">
-    <link href="/css/hybrid.css?1713934136" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1713934136" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1713934136" rel="stylesheet">
-    <link href="/css/auto-complete.css?1713934136" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1713934136" rel="stylesheet">
-    <link href="/css/theme.css?1713934136" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1713934136" rel="stylesheet">
+    <link href="/css/nucleus.css?1713949602" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1713949602" rel="stylesheet">
+    <link href="/css/hybrid.css?1713949602" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1713949602" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1713949602" rel="stylesheet">
+    <link href="/css/auto-complete.css?1713949602" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1713949602" rel="stylesheet">
+    <link href="/css/theme.css?1713949602" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1713949602" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1713934136" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1713949602" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1713934136"></script>
+    <script src="/js/jquery-3.3.1.min.js?1713949602"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1713934136"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1713934136"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1713949602"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1713949602"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1713934136"></script>
+<script type="text/javascript" src="/js/search.js?1713949602"></script>
 
     
   </div>
@@ -966,7 +966,7 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#giới-thiệu">Giới thiệu</a></li>
       </ul>
     </li>
   </ul>
@@ -994,89 +994,15 @@
 
 
 
-	
-<div class="notices info" ><p><strong>Port Forwarding</strong> is a useful way to redirect network traffic from one IP address - Port to another IP address - Port. With <strong>Port Forwarding</strong> we can access an EC2 instance located in the private subnet from our workstation.</p>
-</div>
-
-<p>We will configure <strong>Port Forwarding</strong> for the RDP connection between our machine and <strong>Private Windows Instance</strong> located in the private subnet we created for this exercise.</p>
-<p><img alt="port-fwd" src="/images/arc-04.png"></p>
-<h4 id="create-iam-user-with-permission-to-connect-ssm">Create IAM user with permission to connect SSM</h4>
-<ol>
-<li>Go to <a href="https://console.aws.amazon.com/iamv2/home">IAM service management console</a>
+	<h3 id="giới-thiệu">Giới thiệu</h3>
+<p>Bài lab này giới thiệu về AWS Glue, Amazon Athena và Amazon QuickSight. AWS Glue là danh mục dữ liệu và dịch vụ ETL được quản lý toàn phần; Amazon Athena cung cấp khả năng chạy các truy vấn đặc biệt trên dữ liệu trong kho dữ liệu của bạn; và Amazon QuickSight cung cấp khả năng trực quan hóa dữ liệu bạn nhập.</p>
+<p><img alt="DeployCF" src="/images/5.fwd/1(1).png"></p>
+<p>Dưới đây là các bước của bài lab:</p>
 <ul>
-<li>Click <strong>Users</strong> , then click <strong>Add users</strong>.</li>
+<li><a href="/5-labqueryandvisualize/5.1-athenaandquicksight/">Athena and QuickSight</a></li>
+<li><a href="/5-labqueryandvisualize/5.2-athenafederatedquery/">Athena Federated query</a></li>
+<li><a href="/5-labqueryandvisualize/5.3-athenaandsagemaker/">Athena and SageMaker (Optional)</a></li>
 </ul>
-</li>
-</ol>
-<p><img alt="FWD" src="/images/5.fwd/001-fwd.png"></p>
-<ol start="2">
-<li>At the <strong>Add user</strong> page.
-<ul>
-<li>In the <strong>User name</strong> field, enter <strong>Portfwd</strong>.</li>
-<li>Click on <strong>Access key - Programmatic access</strong>.</li>
-<li>Click <strong>Next: Permissions</strong>.</li>
-</ul>
-</li>
-</ol>
-<p><img alt="FWD" src="/images/5.fwd/002-fwd.png"></p>
-<ol start="3">
-<li>
-<p>Click <strong>Attach existing policies directly</strong>.</p>
-<ul>
-<li>In the search box, enter <strong>ssm</strong>.</li>
-<li>Click on <strong>AmazonSSMFullAccess</strong>.</li>
-<li>Click <strong>Next: Tags</strong>, click <strong>Next: Reviews</strong>.</li>
-<li>Click <strong>Create user</strong>.</li>
-</ul>
-</li>
-<li>
-<p>Save <strong>Access key ID</strong> and <strong>Secret access key</strong> information to perform AWS CLI configuration.</p>
-</li>
-</ol>
-<h4 id="install-and-configure-aws-cli-and-session-manager-plugin">Install and Configure AWS CLI and Session Manager Plugin</h4>
-<p>To perform this hands-on, make sure your workstation has <a href="/">AWS CLI</a> and <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session">Session Manager Plugin</a> installed -manager-working-with-install-plugin.html)</p>
-<p>More hands-on tutorials on installing and configuring the AWS CLI can be found <a href="https://000011.awsstudygroup.com/">here</a>.</p>
-
-<div class="notices tip" ><p>With Windows, when extracting the <strong>Session Manager Plugin</strong> installation folder, run the <strong>install.bat</strong> file with Administrator permission to perform the installation.</p>
-</div>
-
-<h4 id="implement-portforwarding">Implement Portforwarding</h4>
-<ol>
-<li>Run the command below in <strong>Command Prompt</strong> on your machine to configure <strong>Port Forwarding</strong>.</li>
-</ol>
-<pre tabindex="0"><code>   aws ssm start-session --target (your ID windows instance) --document-name AWS-StartPortForwardingSession --parameters portNumber=&#34;3389&#34;,localPortNumber=&#34;9999&#34; --region (your region)
-</code></pre>
-<div class="notices tip" ><p><strong>Windows Private Instance</strong> <strong>Instance ID</strong> information can be found when you view the EC2 Windows Private Instance server details.</p>
-</div>
-
-<ul>
-<li>Example command:</li>
-</ul>
-<pre tabindex="0"><code>C:\Windows\system32&gt;aws ssm start-session --target i-06343d7377486760c --document-name AWS-StartPortForwardingSession --parameters portNumber=&#34;3389&#34;,localPortNumber=&#34;9999&#34; --region ap-southeast-1
-</code></pre>
-<div class="notices warning" ><p>If your command gives an error like below: <br>
-SessionManagerPlugin is not found. Please refer to SessionManager Documentation here: <a href="http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found">http://docs.aws.amazon.com/console/systems-manager/session-manager-plugin-not-found</a><br>
-Prove that you have not successfully installed the Session Manager Plugin. You may need to relaunch <strong>Command Prompt</strong> after installing <strong>Session Manager Plugin</strong>.</p>
-</div>
-
-<ol start="2">
-<li>Connect to the <strong>Private Windows Instance</strong> you created using the <strong>Remote Desktop</strong> tool on your workstation.
-<ul>
-<li>In the Computer section: enter <strong>localhost:9999</strong>.</li>
-</ul>
-</li>
-</ol>
-<p><img alt="FWD" src="/images/5.fwd/003-fwd.png"></p>
-<ol start="3">
-<li>Return to the administration interface of the System Manager - Session Manager service.
-<ul>
-<li>Click tab <strong>Session history</strong>.</li>
-<li>We will see session logs with Document name <strong>AWS-StartPortForwardingSession</strong>.</li>
-</ul>
-</li>
-</ol>
-<p><img alt="FWD" src="/images/5.fwd/004-fwd.png"></p>
-<p>Congratulations on completing the lab on how to use Session Manager to connect and store session logs in S3 bucket. Remember to perform resource cleanup to avoid unintended costs.</p>
 
 
 
@@ -1569,19 +1495,19 @@ Prove that you have not successfully installed the Session Manager Plugin. You m
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1713934136"></script>
-    <script src="/js/perfect-scrollbar.min.js?1713934136"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1713934136"></script>
-    <script src="/js/jquery.sticky.js?1713934136"></script>
-    <script src="/js/featherlight.min.js?1713934136"></script>
-    <script src="/js/highlight.pack.js?1713934136"></script>
+    <script src="/js/clipboard.min.js?1713949602"></script>
+    <script src="/js/perfect-scrollbar.min.js?1713949602"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1713949602"></script>
+    <script src="/js/jquery.sticky.js?1713949602"></script>
+    <script src="/js/featherlight.min.js?1713949602"></script>
+    <script src="/js/highlight.pack.js?1713949602"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1713934136"></script>
-    <script src="/js/learn.js?1713934136"></script>
-    <script src="/js/hugo-learn.js?1713934136"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1713949602"></script>
+    <script src="/js/learn.js?1713949602"></script>
+    <script src="/js/hugo-learn.js?1713949602"></script>
 
-    <link href="/mermaid/mermaid.css?1713934136" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1713934136"></script>
+    <link href="/mermaid/mermaid.css?1713949602" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1713949602"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

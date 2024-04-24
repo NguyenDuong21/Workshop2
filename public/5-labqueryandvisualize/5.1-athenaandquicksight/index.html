@@ -12,21 +12,21 @@
     <title>Athena and QuickSight :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1713922703" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1713922703" rel="stylesheet">
-    <link href="/css/hybrid.css?1713922703" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1713922703" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1713922703" rel="stylesheet">
-    <link href="/css/auto-complete.css?1713922703" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1713922703" rel="stylesheet">
-    <link href="/css/theme.css?1713922703" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1713922703" rel="stylesheet">
+    <link href="/css/nucleus.css?1713949602" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1713949602" rel="stylesheet">
+    <link href="/css/hybrid.css?1713949602" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1713949602" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1713949602" rel="stylesheet">
+    <link href="/css/auto-complete.css?1713949602" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1713949602" rel="stylesheet">
+    <link href="/css/theme.css?1713949602" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1713949602" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1713922703" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1713949602" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1713922703"></script>
+    <script src="/js/jquery-3.3.1.min.js?1713949602"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1713922703"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1713922703"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1713949602"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1713949602"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1713922703"></script>
+<script type="text/javascript" src="/js/search.js?1713949602"></script>
 
     
   </div>
@@ -474,62 +474,6 @@
         ">
       <a href="/4-transformingdatawithglue/4.2-hudi/">
            <b> 4.2 </b> Incremental Data Processing with Hudi
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-transformingdatawithglue/4.3-gluejobbookmark/" title="Glue Job Bookmark (Optional)" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/4-transformingdatawithglue/4.3-gluejobbookmark/">
-           <b> 4.3 </b> Glue Job Bookmark (Optional)
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-transformingdatawithglue/4.4-glueworkflows/" title="Glue Workflows (Optional)" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/4-transformingdatawithglue/4.4-glueworkflows/">
-           <b> 4.4 </b> Glue Workflows (Optional)
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1028,7 +972,16 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#step">Step</a></li>
+        <li><a href="#yêu-cầu">Yêu cầu</a></li>
+        <li><a href="#bắt-đẩu">Bắt đẩu</a></li>
+        <li><a href="#truy-vấn-dữ-liệu-với-amazon-athena">Truy vấn dữ liệu với Amazon Athena</a></li>
+        <li><a href="#build-an-amazon-quicksight-dashboard">Build an Amazon QuickSight Dashboard</a></li>
+        <li><a href="#tạo-quicksight-charts">Tạo QuickSight Charts</a></li>
+        <li><a href="#tạo-quicksight-parameters">Tạo QuickSight Parameters</a></li>
+        <li><a href="#tạo-quicksight-filter">Tạo QuickSight Filter</a></li>
+        <li><a href="#thêm-calculated-fields">Thêm Calculated Fields</a></li>
+        <li><a href="#cost-allocation-tags">Cost Allocation Tags</a></li>
       </ul>
     </li>
   </ul>
@@ -1056,34 +1009,385 @@
 
 
 
-	<p>For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.</p>
-<h4 id="update-iam-role">Update IAM Role</h4>
+	<h3 id="step">Step</h3>
+<ul>
+<li>Yêu cầu</li>
+<li>Bắt đầu</li>
+<li>Truy vấn data với Amazon Athena</li>
+<li>Dựng Amazon QuickSight Dashboard</li>
+<li>Set up QuickSight</li>
+<li>Tạo QuickSight Charts</li>
+<li>Tạo QuickSight Parameters</li>
+<li>Tạo  QuickSight Filter</li>
+<li>Thêm Calculated Fields</li>
+<li>Amazon QuickSight ML-Insights (Optional)</li>
+<li>Athena Workgroups to Control Query Access and Costs (Optional)</li>
+<li>Workflow setup to separate workloads</li>
+<li>Explore the features of workgroups</li>
+<li>Managing Query Usage and Cost</li>
+<li>Sử dụng tag để phân bổ chi phí</li>
+</ul>
+<h3 id="yêu-cầu">Yêu cầu</h3>
+<p>Hoàn thành <a href="/3-ingestionwithdms/">Ingestion with DMS</a> và <a href="/4-transformingdatawithglue/">Transforming data with Glue ETL</a> labs.</p>
+<h3 id="bắt-đẩu">Bắt đẩu</h3>
+<p>Trong bài lab này, chúng ta sẽ hoàn thành các task sau:</p>
 <ol>
-<li>Go to <a href="https://console.aws.amazon.com/iamv2/home?#/home">IAM service management console</a></li>
+<li>Truy vấn dữ liệu và tạo view với Amazon Athena</li>
+<li>Athena Workgroups để Điều khiển query access và costs</li>
+<li>Dựng dashboard với Amazon QuickSight</li>
 </ol>
-<ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>In the search box, enter <strong>SSM</strong>.</li>
-<li>Click on the <strong>SSM-Role</strong> role.</li>
-</ul>
-<p><img alt="S3" src="/images/4.s3/002-s3.png"></p>
+<h3 id="truy-vấn-dữ-liệu-với-amazon-athena">Truy vấn dữ liệu với Amazon Athena</h3>
+<ol>
+<li>Truy cập Athena</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/1.png"></p>
 <ol start="2">
-<li>Click <strong>Attach policies</strong>.</li>
+<li>
+<p>Chọn database <strong>&ldquo;ticketdata&rdquo;</strong>
+<img alt="Athena" src="/images/5.fwd/2.png"></p>
+</li>
+<li>
+<p>Chọn table <strong>&ldquo;parquet_sporting_event_ticket&rdquo;</strong> để xem các trường</p>
+</li>
+<li>
+<p>Copy đoạn SQL sau và nhấn <strong>Run</strong></p>
+</li>
 </ol>
-<p><img alt="S3" src="/images/4.s3/003-s3.png"></p>
+<pre tabindex="0"><code>SELECT
+e.id AS event_id,
+e.sport_type_name AS sport,
+e.start_date_time AS event_date_time,
+h.name AS home_team,
+a.name AS away_team,
+l.name AS location,
+l.city
+FROM parquet_sporting_event e,
+parquet_sport_team h,
+parquet_sport_team a,
+parquet_sport_location l
+WHERE
+e.home_team_id = h.id
+AND e.away_team_id = a.id
+AND e.location_id = l.id;
+</code></pre><p>Kết quả như sau:</p>
+<p><img alt="Athena" src="/images/5.fwd/3.png">
+<img alt="Athena" src="/images/5.fwd/4.png"></p>
+<ol start="5">
+<li>
+<p>Chọn <strong>Create</strong> và <strong>View from query</strong></p>
+</li>
+<li>
+<p>Đặt tên view là sporting_event_info vào click <strong>Create</strong>
+<img alt="Athena" src="/images/5.fwd/5.png"></p>
+</li>
+</ol>
+<p>View đã được khởi tạo
+<img alt="Athena" src="/images/5.fwd/6.png"></p>
+<ol start="7">
+<li>Copy đoạn Sql sau sang một tab mới</li>
+</ol>
+<pre tabindex="0"><code>SELECT t.id AS ticket_id,
+e.event_id,
+e.sport,
+e.event_date_time,
+e.home_team,
+e.away_team,
+e.location,
+e.city,
+t.seat_level,
+t.seat_section,
+t.seat_row,
+t.seat,
+t.ticket_price,
+p.full_name AS ticketholder
+FROM sporting_event_info e,
+parquet_sporting_event_ticket t,
+parquet_person p
+WHERE
+t.sporting_event_id = e.event_id
+AND t.ticketholder_id = p.id
+</code></pre><p><img alt="Athena" src="/images/5.fwd/7.png"></p>
+<ol start="8">
+<li>Lưu lại với tên: create_view_sporting_event_ticket_info
+<img alt="Athena" src="/images/5.fwd/8.png"></li>
+</ol>
+<p>Click <strong>Run</strong></p>
+<p><img alt="Athena" src="/images/5.fwd/9.png"></p>
+<p>Kết quả xuất hiện như sau:
+<img alt="Athena" src="/images/5.fwd/10.png"></p>
+<ol start="9">
+<li>
+<p>Đặt tên view là: sporting_event_ticket_info và click <strong>Create</strong>
+<img alt="Athena" src="/images/5.fwd/11.png"></p>
+</li>
+<li>
+<p>Copy đoạn Sql sau sang một tab mới</p>
+</li>
+</ol>
+<pre tabindex="0"><code>SELECT
+sport,
+count(distinct location) as locations,
+count(distinct event_id) as events,
+count(*) as tickets,
+avg(ticket_price) as avg_ticket_price
+FROM sporting_event_ticket_info
+GROUP BY 1
+ORDER BY 1;
+</code></pre><p>Lưu với tên là: analytics_sporting_event_ticket_info
+<img alt="Athena" src="/images/5.fwd/12.png"></p>
+<p>Click Run</p>
+<p><img alt="Athena" src="/images/5.fwd/13.png"></p>
+<h3 id="build-an-amazon-quicksight-dashboard">Build an Amazon QuickSight Dashboard</h3>
+<h4 id="set-up-quicksight">Set up QuickSight</h4>
+<ol>
+<li>
+<p>Truy cập <strong>QuickSight</strong>
+<img alt="Athena" src="/images/5.fwd/15.png"></p>
+</li>
+<li>
+<p><strong>Sign up for QuickSight.</strong></p>
+</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/16.png"></p>
 <ol start="3">
-<li>In the Search box enter <strong>S3</strong>.</li>
+<li>
+<p>Chọn Enterprise Version</p>
+</li>
+<li>
+<p>Continue
+<img alt="Athena" src="/images/5.fwd/17.png"></p>
+</li>
+<li>
+<p>Chọn No, Maybe Later, Ở màn hình mới để mặc định.</p>
+</li>
+<li>
+<p>Chọn region và check vào các box, enable auto discovery, Amazon Athena, and Amazon S3. Nhập tên và email cho account QuickSight</p>
+</li>
+<li>
+<p>Chọn DMS bucket và chọn <strong>Finish</strong></p>
+</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/18.png"></p>
+<p><img alt="Athena" src="/images/5.fwd/19.png"></p>
+<p>Nhấn <strong>Finish</strong></p>
+<ol start="8">
+<li>
+<p>Chọn New analysis
+<img alt="Athena" src="/images/5.fwd/20.png"></p>
+</li>
+<li>
+<p>Chọn <strong>New dataset</strong>
+<img alt="Athena" src="/images/5.fwd/21.png"></p>
+</li>
+<li>
+<p>Tại màn Create a Dataset, chọn Athena</p>
+</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/22.png"></p>
+<ol start="11">
+<li>
+<p>Data source name: ticketdata-qs, và chọn <strong>Validate connection</strong></p>
+</li>
+<li>
+<p>Click <strong>Create data source</strong>
+<img alt="Athena" src="/images/5.fwd/23.png"></p>
+</li>
+<li>
+<p>Chọn database <strong>ticketdata</strong></p>
+</li>
+<li>
+<p>Chọn bảng <strong>sporting_event_ticket_info</strong> và nhấn <strong>Select</strong></p>
+</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/24.png"></p>
+<ol start="15">
+<li>Chọn option <strong>Import to SPICE for quicker analytics</strong> và nhấn <strong>Visualize</strong>.</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/25.png"></p>
+<p>Chúng ta có thể quan sát thấy QuickSight Visualize interface và bắt đầu xây dựng dashboard</p>
+<p><img alt="Athena" src="/images/5.fwd/26.png"></p>
+<h3 id="tạo-quicksight-charts">Tạo QuickSight Charts</h3>
+<p>Trong phần này chúng ta sẽ cùng tìm hiểu các loại chart</p>
+<ol>
+<li>
+<p>Chọn cột ticket_price để tạo chart.</p>
+</li>
+<li>
+<p>Chọn <strong>expand icon</strong> và chọn <strong>Show as Currency</strong>
+<img alt="Athena" src="/images/5.fwd/27.png"></p>
+</li>
+<li>
+<p>Click <strong>Add button</strong> từ Visuals pane</p>
+</li>
 </ol>
 <ul>
-<li>Click the policy <strong>AmazonS3FullAccess</strong>.</li>
-<li>Click <strong>Attach policy</strong>.</li>
+<li>Visual types: Vertical bar chart</li>
+<li>X-axis Fields list chọn <strong>event_date_time</strong></li>
+<li>Y-axis chọn <strong>ticket_price</strong> từ Field list.</li>
 </ul>
-<p><img alt="S3" src="/images/4.s3/004-s3.png"></p>
-
-<div class="notices tip" ><p>In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy <strong>AmazonS3FullAccess</strong> for convenience.</p>
-</div>
-
-<p>Next, we will proceed to create an S3 bucket to store session logs.</p>
+<p><img alt="Athena" src="/images/5.fwd/28.png"></p>
+<ol start="4">
+<li>Bạn có thể kéo và di chuyển các hình ảnh khác để điều chỉnh không gian trong trang tổng quan. Trong danh sách Trường, nhấp và kéo trường Seat_level vào hộp Nhóm/Màu. Bạn cũng có thể sử dụng thanh trượt bên dưới trục x để vừa với tất cả dữ liệu.</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/29.png"></p>
+<ol start="5">
+<li>
+<p>Trong Visuals pane, chọn <strong>Vertical bar chart</strong> và <strong>Clustered bar combo chart</strong> icon</p>
+</li>
+<li>
+<p>Tại Fields list, chọn <strong>ticketholder</strong></p>
+</li>
+<li>
+<p>Tại <strong>Lines</strong> box, chọn <strong>Aggregate: Count Distinct</strong>.</p>
+</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/30.png"></p>
+<ol start="8">
+<li>Chọn <strong>insight</strong> icon</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/31.png"></p>
+<h3 id="tạo-quicksight-parameters">Tạo QuickSight Parameters</h3>
+<p>Trong phần này chúng ta sẽ tạo parameters cho dashboard và thêm filter.</p>
+<ol>
+<li>Chọn Parameters từ tool bar</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/32.png"></p>
+<ol start="2">
+<li>
+<p>Chọn <strong>Add</strong> để tạo parameter</p>
+</li>
+<li>
+<p>Đặt tên là EventFrom</p>
+</li>
+<li>
+<p>Chọn Data type là Datetime</p>
+</li>
+<li>
+<p>Time granularity là Hour</p>
+</li>
+<li>
+<p>Hãy chọn giá trị từ lịch làm ngày bắt đầu có sẵn trong biểu đồ của bạn cho event_date_time</p>
+</li>
+<li>
+<p>Chọn <strong>Create</strong> và đóng dialog
+<img alt="Athena" src="/images/5.fwd/33.png"></p>
+</li>
+<li>
+<p>Tạo thêm parameter với thông số sau:</p>
+</li>
+</ol>
+<ul>
+<li>Name: EventTo</li>
+<li>Chọn Data type là Datetime</li>
+<li>Time granularity là Hour</li>
+<li>Hãy chọn giá trị từ lịch làm ngày bắt đầu có sẵn trong biểu đồ của bạn cho event_date_time</li>
+<li>Click <strong>Create</strong></li>
+</ul>
+<p><img alt="Athena" src="/images/5.fwd/35.png"></p>
+<ol start="9">
+<li>Trong màn hình tiếp theo. Click vào 3 chấm của <strong>EventFrom</strong> parameter và chọn <strong>Add control</strong></li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/36.png"></p>
+<ol start="10">
+<li>
+<p>Nhập name là Event From và nhấn <strong>Add</strong>
+<img alt="Athena" src="/images/5.fwd/37.png"></p>
+</li>
+<li>
+<p>Tương tự với <strong>EventTo</strong>
+<img alt="Athena" src="/images/5.fwd/38.png"></p>
+</li>
+</ol>
+<p>Bây giờ bạn có thể xem và mở rộng phần Kiểm soát phía trên biểu đồ.</p>
+<p><img alt="Athena" src="/images/5.fwd/39.png"></p>
+<h3 id="tạo-quicksight-filter">Tạo QuickSight Filter</h3>
+<ol>
+<li>Chọn <strong>Filter</strong></li>
+<li>Click (+) để thêm filter event_date_time</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/40.png"></p>
+<ol start="3">
+<li>
+<p>Chọn edit
+<img alt="Athena" src="/images/5.fwd/41.png"></p>
+</li>
+<li>
+<p>Chọn <strong>All applicable visuals</strong> và <strong>Applied To</strong> dropdown</p>
+</li>
+<li>
+<p>Filter type chọn <strong>Date &amp; Time range</strong> và Condition là <strong>Between</strong></p>
+</li>
+<li>
+<p>Chọn option <strong>Use Parameter</strong>, chọn <strong>Yes</strong></p>
+</li>
+<li>
+<p>Start date parameter: <strong>EventFrom</strong></p>
+</li>
+<li>
+<p>End date parameter: <strong>EventTo</strong>
+<img alt="Athena" src="/images/5.fwd/42.png"></p>
+</li>
+<li>
+<p>Click <strong>Apply</strong>.</p>
+</li>
+</ol>
+<h3 id="thêm-calculated-fields">Thêm Calculated Fields</h3>
+<ol>
+<li>
+<p>Chọn <strong>Add Calculated Field</strong>
+<img alt="Athena" src="/images/5.fwd/43.png"></p>
+</li>
+<li>
+<p>Nhập name là: event_day_of_week</p>
+</li>
+<li>
+<p>Formula: extract(&lsquo;WD&rsquo;,{event_date_time})</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>
+<img alt="Athena" src="/images/5.fwd/44.png"></p>
+</li>
+<li>
+<p>Thêm một trường được tính toán khác với các thuộc tính sau:</p>
+</li>
+</ol>
+<ul>
+<li>Calculated field name: event_hour_of_day</li>
+<li>Formula: extract(&lsquo;HH&rsquo;,{event_date_time})</li>
+</ul>
+<ol start="6">
+<li>Chọn Visualize icon từ the Tool bar và nhấn <strong>Add visual</strong></li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/45.png"></p>
+<ol start="7">
+<li>
+<p>Field type&quot; scatter plot</p>
+</li>
+<li>
+<p>Tại Fields list, Chọn các thuộc tính sau:</p>
+</li>
+</ol>
+<ul>
+<li>X-axis: &ldquo;event_hour_of_day&rdquo;</li>
+<li>Y-axis: &ldquo;event_day_of_week&rdquo;</li>
+<li>Size: &ldquo;ticket_price&rdquo;
+<img alt="Athena" src="/images/5.fwd/46.png"></li>
+</ul>
+<p>Pushlish hoặc Share
+<img alt="Athena" src="/images/5.fwd/47.png"></p>
+<p>Dashboard là ảnh chụp nhanh phân tích chỉ đọc mà bạn có thể chia sẻ với những người dùng Amazon QuickSight khác nhằm mục đích báo cáo. Trong Dashboard, những người dùng khác vẫn có thể xem hình ảnh và dữ liệu nhưng điều đó sẽ không sửa đổi tập dữ liệu.</p>
+<p>Bạn có thể chia sẻ phân tích với một hoặc nhiều người dùng khác mà bạn muốn cộng tác để tạo hình ảnh. Phân tích cung cấp các cách sử dụng khác để ghi và sửa đổi tập dữ liệu.</p>
+<h3 id="cost-allocation-tags">Cost Allocation Tags</h3>
+<p>Khi bạn tạo hai nhóm làm việc: nhóm làm việcA và nhóm làm việcB, bạn cũng đã tạo tên dưới dạng thẻ. Các thẻ này có thể được sử dụng trong bảng điều khiển Quản lý chi phí và thanh toán để xác định mức sử dụng cho mỗi nhóm làm việc.</p>
+<p>Ví dụ: bạn có thể tạo một bộ thẻ cho nhóm làm việc trong tài khoản của mình để giúp bạn theo dõi chủ sở hữu nhóm làm việc hoặc xác định nhóm làm việc theo mục đích của họ. Bạn có thể xem các thẻ cho một nhóm làm việc trong trang “Xem chi tiết” cho nhóm làm việc đang được xem xét.</p>
+<p>Bạn có thể thêm tag sau khi đã tạo workgroup. Để tạo tag:</p>
+<ol>
+<li><a href="https://console.aws.amazon.com/athena/home">Athena console</a>, chọn tab Workgroups và chọn workgroup.</li>
+<li>Chọn tab tags.</li>
+<li>Trên tab tags, bấm vào Manage tags, sau đó chỉ định key và value cho tag.</li>
+<li>Khi bạn hoàn tất, hãy nhấp vào <strong>Save Changes</strong>.</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/82.png"></p>
 
 
 
@@ -1349,38 +1653,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -1609,19 +1881,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1713922703"></script>
-    <script src="/js/perfect-scrollbar.min.js?1713922703"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1713922703"></script>
-    <script src="/js/jquery.sticky.js?1713922703"></script>
-    <script src="/js/featherlight.min.js?1713922703"></script>
-    <script src="/js/highlight.pack.js?1713922703"></script>
+    <script src="/js/clipboard.min.js?1713949602"></script>
+    <script src="/js/perfect-scrollbar.min.js?1713949602"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1713949602"></script>
+    <script src="/js/jquery.sticky.js?1713949602"></script>
+    <script src="/js/featherlight.min.js?1713949602"></script>
+    <script src="/js/highlight.pack.js?1713949602"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1713922703"></script>
-    <script src="/js/learn.js?1713922703"></script>
-    <script src="/js/hugo-learn.js?1713922703"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1713949602"></script>
+    <script src="/js/learn.js?1713949602"></script>
+    <script src="/js/hugo-learn.js?1713949602"></script>
 
-    <link href="/mermaid/mermaid.css?1713922703" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1713922703"></script>
+    <link href="/mermaid/mermaid.css?1713949602" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1713949602"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

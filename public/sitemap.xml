@@ -35,8 +35,6 @@
   </url><url>
     <loc>//localhost:1313/5-labqueryandvisualize/5.3-athenaandsagemaker/</loc>
   </url><url>
-    <loc>//localhost:1313/4-transformingdatawithglue/4.3-gluejobbookmark/</loc>
-  </url><url>
     <loc>//localhost:1313/2-lab1/2.3-labetl/</loc>
   </url><url>
     <loc>//localhost:1313/6-labdatalakeautomation/6.3-lakeformationlabforapacheicebergtables/</loc>
@@ -44,8 +42,6 @@
     <loc>//localhost:1313/3-ingestionwithdms/</loc>
   </url><url>
     <loc>//localhost:1313/3-ingestionwithdms/3.2-private-instance/</loc>
-  </url><url>
-    <loc>//localhost:1313/4-transformingdatawithglue/4.4-glueworkflows/</loc>
   </url><url>
     <loc>//localhost:1313/4-transformingdatawithglue/</loc>
   </url><url>
