@@ -12,21 +12,21 @@
     <title>Lab: Transforming data with Glue :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1713867906" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1713867906" rel="stylesheet">
-    <link href="/css/hybrid.css?1713867906" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1713867906" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1713867906" rel="stylesheet">
-    <link href="/css/auto-complete.css?1713867906" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1713867906" rel="stylesheet">
-    <link href="/css/theme.css?1713867906" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1713867906" rel="stylesheet">
+    <link href="/css/nucleus.css?1713934118" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1713934118" rel="stylesheet">
+    <link href="/css/hybrid.css?1713934118" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1713934118" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1713934118" rel="stylesheet">
+    <link href="/css/auto-complete.css?1713934118" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1713934118" rel="stylesheet">
+    <link href="/css/theme.css?1713934118" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1713934118" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1713867906" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1713934118" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1713867906"></script>
+    <script src="/js/jquery-3.3.1.min.js?1713934118"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1713867906"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1713867906"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1713934118"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1713934118"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1713867906"></script>
+<script type="text/javascript" src="/js/search.js?1713934118"></script>
 
     
   </div>
@@ -474,62 +474,6 @@
         ">
       <a href="/4-transformingdatawithglue/4.2-hudi/">
            <b> 4.2 </b> Incremental Data Processing with Hudi
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-transformingdatawithglue/4.3-gluejobbookmark/" title="Glue Job Bookmark (Optional)" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/4-transformingdatawithglue/4.3-gluejobbookmark/">
-           <b> 4.3 </b> Glue Job Bookmark (Optional)
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-transformingdatawithglue/4.4-glueworkflows/" title="Glue Workflows (Optional)" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/4-transformingdatawithglue/4.4-glueworkflows/">
-           <b> 4.4 </b> Glue Workflows (Optional)
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1023,6 +967,8 @@
     <li>
       <ul>
         <li><a href="#giới-thiệu">Giới thiệu</a></li>
+        <li><a href="#yêu-cầu">Yêu cầu:</a></li>
+        <li><a href="#tổng-kết">Tổng kết</a></li>
       </ul>
     </li>
   </ul>
@@ -1052,7 +998,18 @@
 
 	<h3 id="giới-thiệu">Giới thiệu</h3>
 <p>Trong bài lab này, chúng ta sẽ tìm hiểu về AWS Glue, một dịch vụ tích hợp dữ liệu phi máy chủ giúp khám phá, chuẩn bị, di chuyển và tích hợp dữ liệu từ nhiều nguồn để phân tích, học máy (ML) và phát triển ứng dụng dễ dàng hơn. Bạn có thể sử dụng trình thu thập thông tin để điền vào Danh mục dữ liệu AWS Glue các bảng. Đây là phương pháp chính được hầu hết người dùng AWS Glue sử dụng. Trình thu thập thông tin có thể thu thập dữ liệu nhiều kho dữ liệu trong một lần chạy. Sau khi hoàn tất, trình thu thập thông tin sẽ tạo hoặc cập nhật một hoặc nhiều bảng trong Danh mục dữ liệu của bạn. Các công việc trích xuất, chuyển đổi và tải (ETL) mà bạn xác định trong AWS Glue sử dụng các bảng Danh mục dữ liệu này làm nguồn và mục tiêu. Công việc ETL đọc từ và ghi vào kho dữ liệu được chỉ định trong bảng Danh mục dữ liệu nguồn và đích.</p>
-<p><img alt="DeployCF" src="/images/3.connect/86.png"></p>
+<h3 id="yêu-cầu">Yêu cầu:</h3>
+<blockquote>
+<p>Note: Bạn cần hoàn thành <a href="/3-ingestionwithdms/">DMS Lab</a> để thực hiện bài lab này</p>
+</blockquote>
+<h3 id="tổng-kết">Tổng kết</h3>
+<p>Trong bài lab này, bạn sẽ thực hiện các task sau. Bạn có thể chọn chỉ hoàn thành Data Validation and ETL để chuyển sang bài lab tiếp theo nơi có thể truy vấn các bảng bằng Amazon Athena và Visualize bằng Amazon Quciksight.</p>
+<ul>
+<li>Data Validation and ETL</li>
+<li>Incremental Data Processing with Hudi</li>
+<li>Glue Job Bookmark (Optional)</li>
+<li>Glue Workflows (Optional)</li>
+</ul>
 
 
 
@@ -1322,38 +1279,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -1577,19 +1502,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1713867906"></script>
-    <script src="/js/perfect-scrollbar.min.js?1713867906"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1713867906"></script>
-    <script src="/js/jquery.sticky.js?1713867906"></script>
-    <script src="/js/featherlight.min.js?1713867906"></script>
-    <script src="/js/highlight.pack.js?1713867906"></script>
+    <script src="/js/clipboard.min.js?1713934118"></script>
+    <script src="/js/perfect-scrollbar.min.js?1713934118"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1713934118"></script>
+    <script src="/js/jquery.sticky.js?1713934118"></script>
+    <script src="/js/featherlight.min.js?1713934118"></script>
+    <script src="/js/highlight.pack.js?1713934118"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1713867906"></script>
-    <script src="/js/learn.js?1713867906"></script>
-    <script src="/js/hugo-learn.js?1713867906"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1713934118"></script>
+    <script src="/js/learn.js?1713934118"></script>
+    <script src="/js/hugo-learn.js?1713934118"></script>
 
-    <link href="/mermaid/mermaid.css?1713867906" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1713867906"></script>
+    <link href="/mermaid/mermaid.css?1713934118" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1713934118"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
