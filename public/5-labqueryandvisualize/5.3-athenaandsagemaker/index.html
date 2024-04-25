@@ -12,21 +12,21 @@
     <title>Athena and SageMaker :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1713949632" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1713949632" rel="stylesheet">
-    <link href="/css/hybrid.css?1713949632" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1713949632" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1713949632" rel="stylesheet">
-    <link href="/css/auto-complete.css?1713949632" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1713949632" rel="stylesheet">
-    <link href="/css/theme.css?1713949632" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1713949632" rel="stylesheet">
+    <link href="/css/nucleus.css?1714013318" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1714013318" rel="stylesheet">
+    <link href="/css/hybrid.css?1714013318" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1714013318" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1714013318" rel="stylesheet">
+    <link href="/css/auto-complete.css?1714013318" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1714013318" rel="stylesheet">
+    <link href="/css/theme.css?1714013318" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1714013318" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1713949632" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1714013318" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1713949632"></script>
+    <script src="/js/jquery-3.3.1.min.js?1714013318"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1713949632"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1713949632"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1714013318"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1714013318"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1713949632"></script>
+<script type="text/javascript" src="/js/search.js?1714013318"></script>
 
     
   </div>
@@ -972,7 +972,10 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#giới-thiệu">Giới thiệu</a></li>
+        <li><a href="#tạo-amazon-sagemaker-notebook-instance">Tạo Amazon SageMaker Notebook Instance</a></li>
+        <li><a href="#kết-nối-sagemaker-jupyter-notebook-tới-athena">Kết nối SageMaker Jupyter notebook tới Athena</a></li>
+        <li><a href="#làm-việc-với-panda">Làm việc với panda</a></li>
       </ul>
     </li>
   </ul>
@@ -1000,34 +1003,100 @@
 
 
 
-	<p>For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.</p>
-<h4 id="update-iam-role">Update IAM Role</h4>
+	<h3 id="giới-thiệu">Giới thiệu</h3>
+<p><a href="https://aws.amazon.com/sagemaker/">Amazon SageMaker</a> là một nền tảng machine learning toàn diện cho phép bạn xây dựng, đào tạo và triển khai các mô hình machine learning trong AWS. Đây là một dịch vụ có tính mô-đun cao cho phép bạn sử dụng từng thành phần này một cách độc lập với nhau.</p>
+<p>Ở bài này, chúng ta sẽ thực hành:</p>
+<ul>
+<li>Cách sử dụng Jupyter notebooks trong SageMaker để tích hợp với data lake bằng Athena</li>
+<li>Tạo data frames để thao tác với dữ liệu</li>
+</ul>
+<p><img alt="Athena" src="/images/5.fwd/96.png"></p>
+<h3 id="tạo-amazon-sagemaker-notebook-instance">Tạo Amazon SageMaker Notebook Instance</h3>
 <ol>
-<li>Go to <a href="https://console.aws.amazon.com/iamv2/home?#/home">IAM service management console</a></li>
+<li>
+<p>Truy cập <a href="https://console.aws.amazon.com/sagemaker/home">Amazon Sagemaker</a>, Tại <strong>Notebook instances</strong> chọn <strong>Create notebook instance</strong>
+<img alt="Athena" src="/images/5.fwd/97.png"></p>
+</li>
+<li>
+<p>Nhập các thông tin sau:</p>
+</li>
 </ol>
 <ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>In the search box, enter <strong>SSM</strong>.</li>
-<li>Click on the <strong>SSM-Role</strong> role.</li>
+<li>Name: datalake-Sagemaker</li>
+<li>Type: ml.t3.medium</li>
+<li>Elastic Inference: none.</li>
+<li>IAM role: Tạo IAM role Any S3 bucket, gán thêm <strong>AmazonAthenaFullAccess</strong>
+<img alt="Athena" src="/images/5.fwd/98.png"></li>
 </ul>
-<p><img alt="S3" src="/images/4.s3/002-s3.png"></p>
-<ol start="2">
-<li>Click <strong>Attach policies</strong>.</li>
-</ol>
-<p><img alt="S3" src="/images/4.s3/003-s3.png"></p>
+<p><img alt="Athena" src="/images/5.fwd/99.png"></p>
+<p><img alt="Athena" src="/images/5.fwd/100.png"></p>
+<p>Chọn <strong>Create notebook instance</strong>
+<img alt="Athena" src="/images/5.fwd/101.png"></p>
 <ol start="3">
-<li>In the Search box enter <strong>S3</strong>.</li>
+<li>
+<p>Đợi Trạng thái của note book thành <strong>InService</strong>. Chọn <strong>Open Jupyter</strong>
+<img alt="Athena" src="/images/5.fwd/02021.png"></p>
+</li>
+<li>
+<p>Mở notebook interface
+<img alt="Athena" src="/images/5.fwd/102.png"></p>
+</li>
 </ol>
-<ul>
-<li>Click the policy <strong>AmazonS3FullAccess</strong>.</li>
-<li>Click <strong>Attach policy</strong>.</li>
-</ul>
-<p><img alt="S3" src="/images/4.s3/004-s3.png"></p>
+<h3 id="kết-nối-sagemaker-jupyter-notebook-tới-athena">Kết nối SageMaker Jupyter notebook tới Athena</h3>
+<ol>
+<li>
+<p>Tại Jupyter notebook tab, Chọn <strong>New</strong> và chọn <strong>conda_python3</strong>
+<img alt="Athena" src="/images/5.fwd/103.png"></p>
+</li>
+<li>
+<p>Cài đặt PyAthena</p>
+</li>
+</ol>
+<pre tabindex="0"><code>!pip install PyAthena[SQLAlchemy]
+</code></pre><p><img alt="Athena" src="/images/5.fwd/104.png"></p>
+<h3 id="làm-việc-với-panda">Làm việc với panda</h3>
+<ol>
+<li>Chạy Command sau đây bằng notebook cell để lấy region hiện tại</li>
+</ol>
+<pre tabindex="0"><code>!aws configure get region
+</code></pre><p>Chạy đoạn code sau trong note book:</p>
+<pre tabindex="0"><code>from sqlalchemy import create_engine
+import pandas as pd
 
-<div class="notices tip" ><p>In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy <strong>AmazonS3FullAccess</strong> for convenience.</p>
-</div>
+s3_staging_dir = &#34;s3://dmslab-student-dmslabs3bucket-xxx/athenaquery/&#34;
+connection_string = f&#34;awsathena+rest://:@athena.us-east-1.amazonaws.com:443/ticketdata?s3_staging_dir={s3_staging_dir}&#34;
 
-<p>Next, we will proceed to create an S3 bucket to store session logs.</p>
+engine = create_engine(connection_string)
+
+df = pd.read_sql(&#39;SELECT * FROM &#34;ticketdata&#34;.&#34;nfl_stadium_data&#34; order by stadium limit 10;&#39;, engine)
+df
+</code></pre><ol start="2">
+<li>Chọn Run và quan sát dataframe,</li>
+</ol>
+<p><img alt="Athena" src="/images/5.fwd/105.png"></p>
+<ol start="3">
+<li></li>
+</ol>
+<pre tabindex="0"><code>df = pd.read_sql(&#39;SELECT sport, \
+       event_date_time, \
+       home_team,away_team, \
+       city, \
+       count(*) as tickets, \
+       sum(ticket_price) as total_tickets_amt, \
+       avg(ticket_price) as avg_ticket_price, \
+       max(ticket_price) as max_ticket_price, \
+       min(ticket_price) as min_ticket_price  \
+       FROM &#34;ticketdata&#34;.&#34;sporting_event_ticket_info&#34; \
+       group by 1,2,3,4,5 \
+       order by 1,2,3,4,5  limit 1000;&#39;, engine)
+df
+</code></pre><p><img alt="Athena" src="/images/5.fwd/106.png"></p>
+<ol start="4">
+<li>Vẽ biểu đồ</li>
+</ol>
+<pre tabindex="0"><code>import matplotlib.pyplot as plt 
+df.plot(x=&#39;event_date_time&#39;,y=&#39;avg_ticket_price&#39;)
+</code></pre><p><img alt="Athena" src="/images/5.fwd/107.png"></p>
 
 
 
@@ -1524,19 +1593,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1713949632"></script>
-    <script src="/js/perfect-scrollbar.min.js?1713949632"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1713949632"></script>
-    <script src="/js/jquery.sticky.js?1713949632"></script>
-    <script src="/js/featherlight.min.js?1713949632"></script>
-    <script src="/js/highlight.pack.js?1713949632"></script>
+    <script src="/js/clipboard.min.js?1714013318"></script>
+    <script src="/js/perfect-scrollbar.min.js?1714013318"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1714013318"></script>
+    <script src="/js/jquery.sticky.js?1714013318"></script>
+    <script src="/js/featherlight.min.js?1714013318"></script>
+    <script src="/js/highlight.pack.js?1714013318"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1713949632"></script>
-    <script src="/js/learn.js?1713949632"></script>
-    <script src="/js/hugo-learn.js?1713949632"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1714013318"></script>
+    <script src="/js/learn.js?1714013318"></script>
+    <script src="/js/hugo-learn.js?1714013318"></script>
 
-    <link href="/mermaid/mermaid.css?1713949632" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1713949632"></script>
+    <link href="/mermaid/mermaid.css?1714013318" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1714013318"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
