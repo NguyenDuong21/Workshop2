@@ -12,21 +12,21 @@
     <title>DataBrew Pre-Lab :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1714098255" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1714098255" rel="stylesheet">
-    <link href="/css/hybrid.css?1714098255" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1714098255" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1714098255" rel="stylesheet">
-    <link href="/css/auto-complete.css?1714098255" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1714098255" rel="stylesheet">
-    <link href="/css/theme.css?1714098255" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1714098255" rel="stylesheet">
+    <link href="/css/nucleus.css?1714189923" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1714189923" rel="stylesheet">
+    <link href="/css/hybrid.css?1714189923" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1714189923" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1714189923" rel="stylesheet">
+    <link href="/css/auto-complete.css?1714189923" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1714189923" rel="stylesheet">
+    <link href="/css/theme.css?1714189923" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1714189923" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1714098255" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1714189923" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1714098255"></script>
+    <script src="/js/jquery-3.3.1.min.js?1714189923"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1714098255"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1714098255"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1714189923"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1714189923"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1714098255"></script>
+<script type="text/javascript" src="/js/search.js?1714189923"></script>
 
     
   </div>
@@ -860,6 +860,32 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/8-clean/" title="Clean up" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/8-clean/">
+          <b>7. </b>Clean up
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
          
     </ul>
 
@@ -972,7 +998,7 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#setup">Setup</a></li>
       </ul>
     </li>
   </ul>
@@ -1000,34 +1026,28 @@
 
 
 
-	<p>For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.</p>
-<h4 id="update-iam-role">Update IAM Role</h4>
+	<h3 id="setup">Setup</h3>
+<p>Trong bài lab này, chúng ta sẽ sử dụng AWS Glue DataBrew để khám phá dữ liệu trong S3, làm sạch và chuẩn bị dữ liêu.
+Đầu tiên chúng ta phải tạo 1 IAM role để sử dụng trong DataBrew và cho kết quả trong S3 bucket từ DataBrew jobs.</p>
 <ol>
-<li>Go to <a href="https://console.aws.amazon.com/iamv2/home?#/home">IAM service management console</a></li>
-</ol>
-<ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>In the search box, enter <strong>SSM</strong>.</li>
-<li>Click on the <strong>SSM-Role</strong> role.</li>
-</ul>
-<p><img alt="S3" src="/images/4.s3/002-s3.png"></p>
-<ol start="2">
-<li>Click <strong>Attach policies</strong>.</li>
-</ol>
-<p><img alt="S3" src="/images/4.s3/003-s3.png"></p>
-<ol start="3">
-<li>In the Search box enter <strong>S3</strong>.</li>
-</ol>
-<ul>
-<li>Click the policy <strong>AmazonS3FullAccess</strong>.</li>
-<li>Click <strong>Attach policy</strong>.</li>
-</ul>
-<p><img alt="S3" src="/images/4.s3/004-s3.png"></p>
+<li>
+<p>Click vào đây để deploy CloudFormation Stack:
 
-<div class="notices tip" ><p>In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy <strong>AmazonS3FullAccess</strong> for convenience.</p>
-</div>
-
-<p>Next, we will proceed to create an S3 bucket to store session logs.</p>
+<a  href="https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?templateURL=https://s3.us-east-1.amazonaws.com/aws-dataengineering-day.workshop.aws/DataBrew_PreLab_CFN.yaml&amp;stackName=databrew-lab&amp;param_SourceBucket=aws-dataengineering-day.workshop.aws&amp;param_SourceKey=states_daily.csv.gz" target="_blank"  class="btn btn-default">
+  
+  
+  
+  Deploy To AWS
+  
+</a>
+</p>
+</li>
+<li>
+<p>Sau khi deploy stack thành công. Nhấn <strong>Output</strong> để xem các thông tin</p>
+</li>
+</ol>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/1.png"></p>
+<p>Ta sẽ sử dụng các tham số  <strong>DatasetS3Path, DataBrewLabRole and DataBrewOutputS3Bucket</strong> trong bài lab này.</p>
 
 
 
@@ -1499,6 +1519,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
         
@@ -1521,19 +1557,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1714098255"></script>
-    <script src="/js/perfect-scrollbar.min.js?1714098255"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1714098255"></script>
-    <script src="/js/jquery.sticky.js?1714098255"></script>
-    <script src="/js/featherlight.min.js?1714098255"></script>
-    <script src="/js/highlight.pack.js?1714098255"></script>
+    <script src="/js/clipboard.min.js?1714189923"></script>
+    <script src="/js/perfect-scrollbar.min.js?1714189923"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1714189923"></script>
+    <script src="/js/jquery.sticky.js?1714189923"></script>
+    <script src="/js/featherlight.min.js?1714189923"></script>
+    <script src="/js/highlight.pack.js?1714189923"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1714098255"></script>
-    <script src="/js/learn.js?1714098255"></script>
-    <script src="/js/hugo-learn.js?1714098255"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1714189923"></script>
+    <script src="/js/learn.js?1714189923"></script>
+    <script src="/js/hugo-learn.js?1714189923"></script>
 
-    <link href="/mermaid/mermaid.css?1714098255" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1714098255"></script>
+    <link href="/mermaid/mermaid.css?1714189923" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1714189923"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

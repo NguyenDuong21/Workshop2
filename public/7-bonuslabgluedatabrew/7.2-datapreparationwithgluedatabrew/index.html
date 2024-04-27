@@ -12,21 +12,21 @@
     <title>Data preparation with Glue DataBrew :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1714098255" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1714098255" rel="stylesheet">
-    <link href="/css/hybrid.css?1714098255" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1714098255" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1714098255" rel="stylesheet">
-    <link href="/css/auto-complete.css?1714098255" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1714098255" rel="stylesheet">
-    <link href="/css/theme.css?1714098255" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1714098255" rel="stylesheet">
+    <link href="/css/nucleus.css?1714190141" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1714190141" rel="stylesheet">
+    <link href="/css/hybrid.css?1714190141" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1714190141" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1714190141" rel="stylesheet">
+    <link href="/css/auto-complete.css?1714190141" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1714190141" rel="stylesheet">
+    <link href="/css/theme.css?1714190141" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1714190141" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1714098255" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1714190141" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1714098255"></script>
+    <script src="/js/jquery-3.3.1.min.js?1714190141"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1714098255"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1714098255"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1714190141"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1714190141"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1714098255"></script>
+<script type="text/javascript" src="/js/search.js?1714190141"></script>
 
     
   </div>
@@ -860,6 +860,32 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/8-clean/" title="Clean up" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/8-clean/">
+          <b>8. </b>Clean up
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
          
     </ul>
 
@@ -972,7 +998,12 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#các-công-việc-hoàn-thành-trong-bài-lab-này">Các công việc hoàn thành trong bài lab này</a></li>
+        <li><a href="#tạo-project">Tạo project</a></li>
+        <li><a href="#khám-phá-dataset">Khám phá dataset</a></li>
+        <li><a href="#chuẩn-bị-tập-dữ-liệu">Chuẩn bị tập dữ liệu</a></li>
+        <li><a href="#tạo-databrew-job">Tạo DataBrew Job</a></li>
+        <li><a href="#xem-dòng-dữ-liệu">Xem dòng dữ liệu</a></li>
       </ul>
     </li>
   </ul>
@@ -1000,34 +1031,232 @@
 
 
 
-	<p>For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.</p>
-<h4 id="update-iam-role">Update IAM Role</h4>
+	<h3 id="các-công-việc-hoàn-thành-trong-bài-lab-này">Các công việc hoàn thành trong bài lab này</h3>
+<ul>
+<li>Tạo Glue DataBrew để khám phá dữ liệu</li>
+<li>Kết nối với S3 sample dataset</li>
+<li>Khám phá dataset trong Glue DataBrew</li>
+<li>Tạo rich data profile trong dataset</li>
+<li>Dọn dẹp và chuẩn hóa dữ liệu</li>
+</ul>
+<h3 id="tạo-project">Tạo project</h3>
 <ol>
-<li>Go to <a href="https://console.aws.amazon.com/iamv2/home?#/home">IAM service management console</a></li>
+<li>
+<p>Truy cập AWS Glue DataBrew và nhấn <strong>Create project</strong></p>
+</li>
+<li>
+<p>Tạo project với các thông tin:
+<img alt="Clean" src="/images/7.DataBrewDataBrew/2.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/3.png"></p>
+</li>
+<li>
+<p>Tại phần <strong>Connect to a new dataset</strong>, chọn <strong>Amazon S3</strong> bên dưới &ldquo;Data lake/data store&rdquo;
+Nhập <strong>DatasetS3Path</strong> từ output cloudformation
+<img alt="Clean" src="/images/7.DataBrewDataBrew/5.png"></p>
+</li>
+<li>
+<p>Trong phần <strong>Sampling</strong> dể mặc định.
+<img alt="Clean" src="/images/7.DataBrewDataBrew/6.png"></p>
+</li>
+<li>
+<p>Trong phần <strong>Permissions</strong> chọn role name từ <strong>OutPut</strong> cloudformation có key là: <strong>DataBrewLabRole</strong>
+<img alt="Clean" src="/images/7.DataBrewDataBrew/7.png"></p>
+</li>
+<li>
+<p>Nhấn <strong>Create project</strong>
+Glue DataBrew sẽ tạo project trong vòng vài phút.
+<img alt="Clean" src="/images/7.DataBrewDataBrew/8.png"></p>
+</li>
 </ol>
+<h3 id="khám-phá-dataset">Khám phá dataset</h3>
+<ol>
+<li>Ghi project đã được tạo, chúng ta sẽ thấy <strong>Grid</strong> view như sau. Đây là view mặc định, dữ liệu được hiển thị dưới dạng bảng
+<img alt="Clean" src="/images/7.DataBrewDataBrew/9.png"></li>
+</ol>
+<p>Grid view hiển thị các thông tin sau:</p>
 <ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>In the search box, enter <strong>SSM</strong>.</li>
-<li>Click on the <strong>SSM-Role</strong> role.</li>
+<li>Các cột trong dataset</li>
+<li>Kiểu dữ liệu của các cột</li>
+<li>Phạm vi của các giá trị tìm thấy</li>
+<li>Phân phối thống kê các cột dữ liệu số</li>
 </ul>
-<p><img alt="S3" src="/images/4.s3/002-s3.png"></p>
 <ol start="2">
-<li>Click <strong>Attach policies</strong>.</li>
+<li>Chọn Schema Tab
+Schema view hiển thị lược đồ đã được suy ra từ tập dữ liệu. Trong Schema view, bạn có thể xem số liệu thống kê về các giá trị dữ liệu trong mỗi cột.</li>
 </ol>
-<p><img alt="S3" src="/images/4.s3/003-s3.png"></p>
-<ol start="3">
-<li>In the Search box enter <strong>S3</strong>.</li>
-</ol>
+<p>Trong schema view, chúng ta có thể:</p>
 <ul>
-<li>Click the policy <strong>AmazonS3FullAccess</strong>.</li>
-<li>Click <strong>Attach policy</strong>.</li>
+<li>Chọn checkbox  để xem tóm tắt thống kê cho các giá trị cột</li>
+<li>Hiển thị/Ẩn cột</li>
+<li>Đổi tên cột</li>
+<li>Thay đổi kiểu dữ liệu của cột</li>
+<li>Sắp xếp lại thứ tự cột bằng cách kéo thả các cột</li>
 </ul>
-<p><img alt="S3" src="/images/4.s3/004-s3.png"></p>
-
-<div class="notices tip" ><p>In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy <strong>AmazonS3FullAccess</strong> for convenience.</p>
-</div>
-
-<p>Next, we will proceed to create an S3 bucket to store session logs.</p>
+<ol start="3">
+<li>Click vào <strong>Profile</strong> tab</li>
+</ol>
+<p>Trong profile view, chúng ta có thể chạy data profile job để kiểm tra và thu thập các tóm tắt thống kê về dữ liệu. Data profile là sự đánh giá về mặt cấu trúc, nội dung, mối quan hệ và nguồn gốc.
+<img alt="Clean" src="/images/7.DataBrewDataBrew/10.png"></p>
+<p>Chọn <strong>Run data profile</strong>
+Trong <strong>Job details</strong> và <strong>Job run sample</strong> để các value bằng mặc định. Trong <strong>Job output settings</strong> chọn value của key <strong>DataBrewOutputS3Bucket</strong> và thêm vào cuối /data-profile/ như sau:
+<img alt="Clean" src="/images/7.DataBrewDataBrew/11.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/12.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/13.png"></p>
+<p>Cuối cùng nhấn <strong>Create and run job</strong></p>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/142.png"></p>
+<ol start="4">
+<li>Chọn Jobs và click vào <strong>Profile jobs</strong>  tab để xem danh sách profile job.</li>
+</ol>
+<p>Khi profile job successfully completed, chọn <strong>View data profile</strong></p>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/14.png"></p>
+<p>Sau đó, sẽ hiển thị ra <strong>Data profile overview</strong></p>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/15.png"></p>
+<p>Bạn cũng có thể truy cập Profile tab trong project
+Data profile hiển thị bản tóm tắt về các hàng và cột trong tập dữ liệu, số lượng cột và hàng hợp lệ cũng như mối tương quan giữa các cột.</p>
+<ol start="5">
+<li>Chọn <strong>Column statistics</strong> tab để xem bảng phân tích từng cột của các giá trị dữ liệu.
+<img alt="Clean" src="/images/7.DataBrewDataBrew/16.png"></li>
+</ol>
+<h3 id="chuẩn-bị-tập-dữ-liệu">Chuẩn bị tập dữ liệu</h3>
+<p>Trong phần này, chúng ta sẽ áp dụng các phép biến đổi sau cho tập dữ liệu.</p>
+<ul>
+<li>Chuyển đổi cột ngày từ integer thành string</li>
+<li>Chia cột ngày thành 3 cột mới (năm, tháng, ngày) để phân chia dữ liệu theo các cột này</li>
+<li>Điền các giá trị còn thiếu vào cột có thể xảy ra bằng 0</li>
+<li>Ánh xạ các giá trị của cột dataQualityGrade thành một giá trị số</li>
+</ul>
+<ol>
+<li>Quay trở lại project covid-states-daily và chọn <strong>PROJECTS</strong></li>
+<li>DataBrew đã suy ra cột dữ liệu date là số nguyên. Chúng ta sẽ convert cột date thành string
+Chọn # icon và chọn <strong>string</strong>
+<img alt="Clean" src="/images/7.DataBrewDataBrew/17.png"></li>
+</ol>
+<p>Chọn <strong>Apply</strong>
+<img alt="Clean" src="/images/7.DataBrewDataBrew/18.png"></p>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/19.png"></p>
+<ol start="3">
+<li>Chúng ta sẽ copy cột date trước khi split date thành year, month, day.</li>
+</ol>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/20.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/21.png"></p>
+<p>Click apply.</p>
+<ol start="4">
+<li>Split cột date thành các cột year, month, day và đổi tên các cột tương ứng</li>
+</ol>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/22.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/23.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/24.png"></p>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/25.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/26.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/27.png"></p>
+<ol start="5">
+<li>
+<p>Cột probableCases bị thiếu dữ liệu. Chúng ta sẽ điền vào các chỗ bị thiếu giá trị 0.
+<img alt="Clean" src="/images/7.DataBrewDataBrew/28.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/29.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/30.png"></p>
+</li>
+<li>
+<p>Ánh xạ các giá trị của cột dataQualityGrade thành các giá trị số.</p>
+</li>
+</ol>
+<p>Để điều hướng đến cột dataQualityGrade, hãy nhấp vào danh sách cột thả xuống ở trên cùng, nhập dataQualityGrade vào trường tìm kiếm và nhấp vào <strong>View</strong>.</p>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/31.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/32.png"></p>
+<p>Trong Categorically map column dialog</p>
+<ul>
+<li>Chọn <strong>Map all values</strong></li>
+<li>Chọn <strong>Map values to numeric values</strong></li>
+<li>Map dataQualityGrade value hiện tại thành new value
+<table>
+<thead>
+<tr>
+<th>dataQualityGrade</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>0</td>
+</tr>
+<tr>
+<td>A+</td>
+<td>1</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2</td>
+</tr>
+<tr>
+<td>B</td>
+<td>3</td>
+</tr>
+<tr>
+<td>C</td>
+<td>4</td>
+</tr>
+<tr>
+<td>D</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/33.png"></p>
+<p>Để tất cả các cài đặt khác làm mặc định. Nhấp vào <strong>Apply</strong></p>
+<p>Sau phép biến đổi này, cột mới dataQualityGrade_mapped có kiểu double, hãy chuyển cột này thành số nguyên. Bằng cách nhấp vào # ở trên cùng bên trái của cột mới dataQualityGrade_mapped. Nhấp vào <strong>Apply</strong> ở phía bên phải để xác nhận thay đổi.</p>
+<ol start="7">
+<li>Chúng ta đã sẵn sàng xuất bản recipe để sử dụng trong DataBrew jobs. Final recipe sẽ trông như thế này</li>
+</ol>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/34.png"></p>
+<p>Nhấp vào nút <strong>Publish</strong> ở đầu công thức.</p>
+<p>Tùy chọn nhập mô tả phiên bản và nhấp vào <strong>Publish</strong>
+<img alt="Clean" src="/images/7.DataBrewDataBrew/553.png"></p>
+<h3 id="tạo-databrew-job">Tạo DataBrew Job</h3>
+<ol>
+<li>Chọn <strong>Jobs</strong>
+Mở <strong>Recipe jobs</strong> tab, và click vào <strong>Create job</strong></li>
+</ol>
+<p>Nhập covid-states-daily-prep là job name</p>
+<p>Chọn <strong>Create a recipe job</strong></p>
+<p>Chọn covid-states-daily-stats dataset</p>
+<p>Chọn covid-states-daily-recipe</p>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/36.png"></p>
+<p>Tại mục <strong>Job output settings</strong> nhập:</p>
+<ul>
+<li><strong>Output to</strong> Amazon S3.</li>
+<li><strong>File type</strong>: CSV.</li>
+<li><strong>Delimiter</strong> Comma(,).</li>
+<li><strong>Compression</strong> None.</li>
+<li><strong>S3 bucket owners&rsquo;s Account</strong> Current AWS account.</li>
+<li><strong>S3 location</strong>: giá trị của key <strong>DataBrewOutputS3Bucket</strong> và thêm /job-outputs/ vào cuối. Ví du: s3://databrew-lab-databrewoutputs3bucket-xxxxx/job-outputs/.</li>
+</ul>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/37.png"></p>
+<p>Click <strong>Settings</strong></p>
+<ul>
+<li>Chọn <strong>Create a new folder for each job run.</strong></li>
+<li><strong>Custom partition by column values</strong>: Enabled. Tiếp theo tìm kiếm và <strong>Add</strong> year, month và day ở phần <strong>Columns to partition by</strong>. Cuối cùng nhấn save</li>
+</ul>
+<p><img alt="Clean" src="/images/7.DataBrewDataBrew/3838.png"></p>
+<p>Tại Permissions chọn role từ Output của CloudFomation:
+<img alt="Clean" src="/images/7.DataBrewDataBrew/35.png"></p>
+<p>Chọn <strong>Create and run job</strong></p>
+<ol start="2">
+<li>DataBrew job đã được tạo và running
+<img alt="Clean" src="/images/7.DataBrewDataBrew/39.png">
+<img alt="Clean" src="/images/7.DataBrewDataBrew/40.png"></li>
+</ol>
+<h3 id="xem-dòng-dữ-liệu">Xem dòng dữ liệu</h3>
+<ol>
+<li>Tại DataBrew, Truy cập covid-states-daily project.</li>
+</ol>
+<p>Chọn <strong>Lineage</strong>
+<img alt="Clean" src="/images/7.DataBrewDataBrew/45.png"></p>
+<p>Chế độ xem này hiển thị nguồn gốc của dữ liệu và các bước chuyển đổi mà dữ liệu đã trải qua.
+<img alt="Clean" src="/images/7.DataBrewDataBrew/46.png"></p>
+<p>Chúng ta đã hoàn thành DataBrew Lab.</p>
 
 
 
@@ -1499,6 +1728,25 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
         
@@ -1511,7 +1759,7 @@
 			<a class="nav nav-prev" href="/7-bonuslabgluedatabrew/7.1-databrewpre-lab/" title="DataBrew Pre-Lab"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/7-bonuslabgluedatabrew/7.1-databrewpre-lab/" title="DataBrew Pre-Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/8-clean/" title="Clean up" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1521,19 +1769,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1714098255"></script>
-    <script src="/js/perfect-scrollbar.min.js?1714098255"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1714098255"></script>
-    <script src="/js/jquery.sticky.js?1714098255"></script>
-    <script src="/js/featherlight.min.js?1714098255"></script>
-    <script src="/js/highlight.pack.js?1714098255"></script>
+    <script src="/js/clipboard.min.js?1714190141"></script>
+    <script src="/js/perfect-scrollbar.min.js?1714190141"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1714190141"></script>
+    <script src="/js/jquery.sticky.js?1714190141"></script>
+    <script src="/js/featherlight.min.js?1714190141"></script>
+    <script src="/js/highlight.pack.js?1714190141"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1714098255"></script>
-    <script src="/js/learn.js?1714098255"></script>
-    <script src="/js/hugo-learn.js?1714098255"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1714190141"></script>
+    <script src="/js/learn.js?1714190141"></script>
+    <script src="/js/hugo-learn.js?1714190141"></script>
 
-    <link href="/mermaid/mermaid.css?1714098255" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1714098255"></script>
+    <link href="/mermaid/mermaid.css?1714190141" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1714190141"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

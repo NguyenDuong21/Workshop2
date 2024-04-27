@@ -6,29 +6,15 @@ chapter : false
 pre : " <b> 7.1 </b> "
 ---
 
-For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.
+### Setup
+Trong bài lab này, chúng ta sẽ sử dụng AWS Glue DataBrew để khám phá dữ liệu trong S3, làm sạch và chuẩn bị dữ liêu.
+Đầu tiên chúng ta phải tạo 1 IAM role để sử dụng trong DataBrew và cho kết quả trong S3 bucket từ DataBrew jobs.
 
-#### Update IAM Role
+1. Click vào đây để deploy CloudFormation Stack:
+{{< button href="https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?templateURL=https://s3.us-east-1.amazonaws.com/aws-dataengineering-day.workshop.aws/DataBrew_PreLab_CFN.yaml&stackName=databrew-lab&param_SourceBucket=aws-dataengineering-day.workshop.aws&param_SourceKey=states_daily.csv.gz" class="btn btn-white" >}}Deploy To AWS{{< /button >}}
 
-1. Go to [IAM service management console](https://console.aws.amazon.com/iamv2/home?#/home)
-  + Click **Roles**.
-  + In the search box, enter **SSM**.
-  + Click on the **SSM-Role** role.
+2. Sau khi deploy stack thành công. Nhấn **Output** để xem các thông tin
 
-![S3](/images/4.s3/002-s3.png)
+![Clean](/images/7.DataBrewDataBrew/1.png)
 
-2. Click **Attach policies**.
- 
-![S3](/images/4.s3/003-s3.png)
-
-3. In the Search box enter **S3**.
-  + Click the policy **AmazonS3FullAccess**.
-  + Click **Attach policy**.
- 
-![S3](/images/4.s3/004-s3.png)
- 
-{{%notice tip%}}
-In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy **AmazonS3FullAccess** for convenience.
-{{%/notice%}}
-
-Next, we will proceed to create an S3 bucket to store session logs.
+Ta sẽ sử dụng các tham số  **DatasetS3Path, DataBrewLabRole and DataBrewOutputS3Bucket** trong bài lab này.
