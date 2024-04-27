@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.125.3">
+    <meta name="generator" content="Hugo 0.125.4">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
@@ -12,21 +12,21 @@
     <title>Lake Formation Lab for Apache Iceberg Tables :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1714035272" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1714035272" rel="stylesheet">
-    <link href="/css/hybrid.css?1714035272" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1714035272" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1714035272" rel="stylesheet">
-    <link href="/css/auto-complete.css?1714035272" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1714035272" rel="stylesheet">
-    <link href="/css/theme.css?1714035272" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1714035272" rel="stylesheet">
+    <link href="/css/nucleus.css?1714119056" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1714119056" rel="stylesheet">
+    <link href="/css/hybrid.css?1714119056" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1714119056" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1714119056" rel="stylesheet">
+    <link href="/css/auto-complete.css?1714119056" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1714119056" rel="stylesheet">
+    <link href="/css/theme.css?1714119056" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1714119056" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1714035272" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1714119056" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1714035272"></script>
+    <script src="/js/jquery-3.3.1.min.js?1714119056"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1714035272"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1714035272"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1714119056"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1714119056"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1714035272"></script>
+<script type="text/javascript" src="/js/search.js?1714119056"></script>
 
     
   </div>
@@ -972,7 +972,10 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#giới-thiệu-apache-iceberg">Giới thiệu Apache Iceberg</a></li>
+        <li><a href="#bước-1-tạo-glue-job-và-iceberg-database-và-tables">Bước 1 Tạo glue job và iceberg database và tables</a></li>
+        <li><a href="#bước-2-truy-vấn-iceberg-table-trong-athena">Bước 2 Truy vấn Iceberg table trong Athena</a></li>
+        <li><a href="#phân-quyền-truy-vấn">Phân quyền truy vấn</a></li>
       </ul>
     </li>
   </ul>
@@ -1000,34 +1003,135 @@
 
 
 
-	<p>For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.</p>
-<h4 id="update-iam-role">Update IAM Role</h4>
+	<h3 id="giới-thiệu-apache-iceberg">Giới thiệu Apache Iceberg</h3>
+<p>Apache Iceberg là một định dạng bảng mở dành cho các bộ dữ liệu phân tích khổng lồ. Iceberg thêm các bảng vào các công cụ điện toán bao gồm Spark, Trino, PrestoDB, Flink và Hive bằng định dạng bảng hiệu suất cao hoạt động giống như bảng SQL. Iceberg đã được thiết kế và phát triển để trở thành một tiêu chuẩn cộng đồng mở với đặc điểm kỹ thuật nhằm đảm bảo khả năng tương thích giữa các ngôn ngữ và cách triển khai.</p>
+<p>Tìm hiểu thêm về Apache Iceberg:</p>
 <ol>
-<li>Go to <a href="https://console.aws.amazon.com/iamv2/home?#/home">IAM service management console</a></li>
+<li><a href="https://iceberg.apache.org/docs/latest/">Apache Iceberg documentation </a></li>
+<li><a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-iceberg-how-it-works.html">How Iceberg works </a></li>
+<li><a href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-iceberg.html">Using the Iceberg framework in AWS Glue</a></li>
 </ol>
-<ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>In the search box, enter <strong>SSM</strong>.</li>
-<li>Click on the <strong>SSM-Role</strong> role.</li>
-</ul>
-<p><img alt="S3" src="/images/4.s3/002-s3.png"></p>
-<ol start="2">
-<li>Click <strong>Attach policies</strong>.</li>
+<p>Trong bài lab này chúng ta sẽ: Tạo Apache Iceberg tables</p>
+<h3 id="bước-1-tạo-glue-job-và-iceberg-database-và-tables">Bước 1 Tạo glue job và iceberg database và tables</h3>
+<ol>
+<li>Truy cập: <a href="https://console.aws.amazon.com/athena/home">Athena Console</a> và chạy truy vấn sau:</li>
 </ol>
-<p><img alt="S3" src="/images/4.s3/003-s3.png"></p>
+<pre tabindex="0"><code>CREATE DATABASE ticketdata_iceberg LOCATION &#39;s3://&lt;BUCKET_NAME&gt;/data/ticketdata_iceberg/&#39;;
+</code></pre><ol start="2">
+<li>Tạo Glue job</li>
+</ol>
+<p><img alt="Clean" src="/images/6.clean/40.png"></p>
+<p><img alt="Clean" src="/images/6.clean/41.png"></p>
 <ol start="3">
-<li>In the Search box enter <strong>S3</strong>.</li>
+<li>Copy đoạn code sau và dán vào Glue script editor</li>
+</ol>
+<pre tabindex="0"><code>
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkConf, SparkContext
+from pyspark.sql import SparkSession
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from pyspark.sql.functions import col
+
+args = getResolvedOptions(sys.argv, [&#39;JOB_NAME&#39;, &#39;RAWZONE_BUCKET&#39;,&#39;ICEBERG_DB_NAME&#39;])
+
+AWS_BUCKET = args[&#39;RAWZONE_BUCKET&#39;]
+GLUE_DB_NAME = args[&#39;ICEBERG_DB_NAME&#39;] # Update with your GlueDB
+TABLE_NAME = &#34;ticket_purchase_hist&#34;
+conf_list = [
+    #General Spark configs
+    (&#34;hive.metastore.client.factory.class&#34;, &#34;com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory&#34;),
+    (&#34;spark.sql.parquet.writeLegacyFormat&#34;, &#34;true&#34;),
+    (&#34;spark.sql.parquet.writeLegacyFormat&#34;, &#34;true&#34;),
+    (&#34;hive.exec.dynamic.partition.mode&#34;, &#34;nonstrict&#34;),
+    (&#34;spark.sql.hive.caseSensitiveInferenceMode&#34;, &#34;INFER_ONLY&#34;),
+    (&#34;spark.sql.source.partitionOverviewMode&#34;, &#34;dynamic&#34;),
+    #Configs needed for Iceberg
+    (&#34;spark.sql.extensions&#34;, &#34;org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions&#34;),
+    (&#34;spark.sql.catalog.iceberg_catalog&#34;, &#34;org.apache.iceberg.spark.SparkCatalog&#34;),
+    (&#34;spark.sql.catalog.iceberg_catalog.warehouse&#34;, f&#34;s3://{AWS_BUCKET}/iceberg_catalog/&#34;),
+    (&#34;spark.sql.catalog.iceberg_catalog.catalog-impl&#34;, &#34;org.apache.iceberg.aws.glue.GlueCatalog&#34;)
+]
+ 
+spark_conf = SparkConf().setAll(conf_list)
+spark = SparkSession.builder.config(conf=spark_conf).enableHiveSupport().getOrCreate()
+glue_context = GlueContext(spark.sparkContext)
+job = Job(glue_context)
+job.init(args[&#39;JOB_NAME&#39;], args)
+ 
+df = spark.read.format(&#34;csv&#34;).option(&#34;header&#34;, &#34;true&#34;).load(f&#34;s3://{AWS_BUCKET}/tickets/dms_sample/ticket_purchase_hist/LOAD00000001.csv&#34;)
+df = df.withColumn(&#34;purchase_price&#34;,col(&#34;purchase_price&#34;).cast(&#39;double&#39;))
+df.registerTempTable(&#34;input_data&#34;)
+ 
+## CREATE TABLE
+ 
+sql_stmnt = f&#34;&#34;&#34;
+CREATE OR REPLACE TABLE iceberg_catalog.{GLUE_DB_NAME}.{TABLE_NAME}
+USING iceberg
+TBLPROPERTIES (&#39;table_type&#39;=&#39;ICEBERG&#39;, &#39;format-version&#39;=&#39;2&#39;)
+LOCATION &#39;s3://{AWS_BUCKET}/data/{GLUE_DB_NAME}/{TABLE_NAME}&#39;
+AS SELECT * FROM input_data
+&#34;&#34;&#34;
+spark.sql(sql_stmnt).show()
+
+job.commit()
+</code></pre><ol start="4">
+<li>Chọn Job Details và nhập các thông số sau:</li>
 </ol>
 <ul>
-<li>Click the policy <strong>AmazonS3FullAccess</strong>.</li>
-<li>Click <strong>Attach policy</strong>.</li>
+<li>Name: glue-iceberg-lf-job</li>
+<li>IAM: <em>-GlueLabRole-</em></li>
+<li>Type: Spark</li>
+<li>Glue version: Glue 3.0 - Supports spark 3.1, Scala 2, Python 3.</li>
+<li>Language: Python 3</li>
+<li>Disable the Job bookmark</li>
+<li>Tất cả option còn lại để mặc định</li>
 </ul>
-<p><img alt="S3" src="/images/4.s3/004-s3.png"></p>
-
-<div class="notices tip" ><p>In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy <strong>AmazonS3FullAccess</strong> for convenience.</p>
-</div>
-
-<p>Next, we will proceed to create an S3 bucket to store session logs.</p>
+<ol start="5">
+<li>Nhập <strong>Job parameters</strong> như sau:</li>
+</ol>
+<ul>
+<li>
+<p>Key: &ndash;ICEBERG_DB_NAME, Value: ticketdata_iceberg</p>
+</li>
+<li>
+<p>Key: &ndash;RAWZONE_BUCKET, Value: Enter the Bucket name from s3-target-endpoint.</p>
+</li>
+<li>
+<p>Key: &ndash;conf, Value: spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions &ndash;conf spark.sql.catalog.glue_catalog=org.apache.iceberg.spark.SparkCatalog &ndash;conf spark.sql.catalog.glue_catalog.warehouse=s3://&lt;BUCKET_NAME&gt;/data/ticketdata_iceberg &ndash;conf spark.sql.catalog.glue_catalog.catalog-impl=org.apache.iceberg.aws.glue.GlueCatalog &ndash;conf spark.sql.catalog.glue_catalog.io-impl=org.apache.iceberg.aws.s3.S3FileIO</p>
+</li>
+<li>
+<p>Key: &ndash;datalake-formats, Value: iceberg</p>
+</li>
+</ul>
+<ol start="6">
+<li>
+<p>Nhấn Save và click run. Đợi đến khi Run status là Succeeded
+<img alt="Clean" src="/images/6.clean/42.png"></p>
+</li>
+<li>
+<p>Glue job đã tạo tables ticket_purchase_hist</p>
+</li>
+</ol>
+<h3 id="bước-2-truy-vấn-iceberg-table-trong-athena">Bước 2 Truy vấn Iceberg table trong Athena</h3>
+<ol>
+<li>
+<p>Xác định  Iceberg table được tạo thành công.</p>
+</li>
+<li>
+<p>Ta thấy tables và data mới ticket_purchase_hist ticketdata_iceberg.
+<img alt="Clean" src="/images/6.clean/43.png"></p>
+</li>
+<li>
+<p>Truy vấn ticket_purchase_hist từ ticketdata_iceberg database
+<img alt="Clean" src="/images/6.clean/44.png">
+<img alt="Clean" src="/images/6.clean/45.png"></p>
+</li>
+</ol>
+<h3 id="phân-quyền-truy-vấn">Phân quyền truy vấn</h3>
+<p>Phần này tương tự như lab: Bước 3 <a href="/6-labdatalakeautomation/6.3-lakeformationlabforapacheicebergtables/">Lake Formation Lab for Apache Hudi Tables</a></p>
 
 
 
@@ -1524,19 +1628,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1714035272"></script>
-    <script src="/js/perfect-scrollbar.min.js?1714035272"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1714035272"></script>
-    <script src="/js/jquery.sticky.js?1714035272"></script>
-    <script src="/js/featherlight.min.js?1714035272"></script>
-    <script src="/js/highlight.pack.js?1714035272"></script>
+    <script src="/js/clipboard.min.js?1714119056"></script>
+    <script src="/js/perfect-scrollbar.min.js?1714119056"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1714119056"></script>
+    <script src="/js/jquery.sticky.js?1714119056"></script>
+    <script src="/js/featherlight.min.js?1714119056"></script>
+    <script src="/js/highlight.pack.js?1714119056"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1714035272"></script>
-    <script src="/js/learn.js?1714035272"></script>
-    <script src="/js/hugo-learn.js?1714035272"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1714119056"></script>
+    <script src="/js/learn.js?1714119056"></script>
+    <script src="/js/hugo-learn.js?1714119056"></script>
 
-    <link href="/mermaid/mermaid.css?1714035272" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1714035272"></script>
+    <link href="/mermaid/mermaid.css?1714119056" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1714119056"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

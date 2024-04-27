@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.125.3">
+    <meta name="generator" content="Hugo 0.125.4">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
@@ -12,21 +12,21 @@
     <title>Lake Formation Lab for Delta Tables :: AWS System Manager</title>
 
     
-    <link href="/css/nucleus.css?1714035272" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1714035272" rel="stylesheet">
-    <link href="/css/hybrid.css?1714035272" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1714035272" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1714035272" rel="stylesheet">
-    <link href="/css/auto-complete.css?1714035272" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1714035272" rel="stylesheet">
-    <link href="/css/theme.css?1714035272" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1714035272" rel="stylesheet">
+    <link href="/css/nucleus.css?1714119056" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1714119056" rel="stylesheet">
+    <link href="/css/hybrid.css?1714119056" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1714119056" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1714119056" rel="stylesheet">
+    <link href="/css/auto-complete.css?1714119056" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1714119056" rel="stylesheet">
+    <link href="/css/theme.css?1714119056" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1714119056" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1714035272" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1714119056" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1714035272"></script>
+    <script src="/js/jquery-3.3.1.min.js?1714119056"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1714035272"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1714035272"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1714119056"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1714119056"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1714035272"></script>
+<script type="text/javascript" src="/js/search.js?1714119056"></script>
 
     
   </div>
@@ -972,7 +972,12 @@
   <ul>
     <li>
       <ul>
-        <li></li>
+        <li><a href="#yêu-cầu">Yêu cầu.</a></li>
+        <li><a href="#các-bước-thực-hiện">Các bước thực hiện.</a></li>
+        <li><a href="#tạo-glue-job-để-load-dữ-liệu-vào-delta-table">Tạo Glue Job để load dữ liệu vào delta table</a></li>
+        <li><a href="#glue-crawler-to-register-delta-table-with-glue-catalog">Glue Crawler to register delta table with Glue Catalog</a></li>
+        <li><a href="#truy-vấn-delta-table-sử-dụng-athena">Truy vấn Delta table sử dụng Athena</a></li>
+        <li><a href="#phân-quyền-truy-vấn">Phân quyền truy vấn</a></li>
       </ul>
     </li>
   </ul>
@@ -1000,34 +1005,158 @@
 
 
 
-	<p>For our EC2 instances to be able to send session logs to the S3 bucket, we will need to update the IAM Role assigned to the EC2 instance by adding a policy that allows access to S3.</p>
-<h4 id="update-iam-role">Update IAM Role</h4>
+	<h3 id="yêu-cầu">Yêu cầu.</h3>
+<ul>
+<li>Tải dữ liệu vào S3 bằng các hoàn thành Lab <a href="/3-ingestionwithdms/3.1-dms-migration-lab/">MainLab</a></li>
+</ul>
+<h3 id="các-bước-thực-hiện">Các bước thực hiện.</h3>
+<ul>
+<li>Tạo Glue Job để load dữ liệu vào Delta tables</li>
+<li>Chạy Glue Crawler</li>
+<li>Xem kết quả workflow sử dụng Athena</li>
+</ul>
+<h3 id="tạo-glue-job-để-load-dữ-liệu-vào-delta-table">Tạo Glue Job để load dữ liệu vào delta table</h3>
 <ol>
-<li>Go to <a href="https://console.aws.amazon.com/iamv2/home?#/home">IAM service management console</a></li>
+<li>Tạo glue job và past đoạn code sau đây vào.
+<img alt="Clean" src="/images/6.clean/46.png">
+<img alt="Clean" src="/images/6.clean/47.png"></li>
+</ol>
+<pre tabindex="0"><code>import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from delta.tables import * #added to support delta tables
+
+args = getResolvedOptions(sys.argv, [&#34;JOB_NAME&#34;])
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args[&#34;JOB_NAME&#34;], args)
+
+# Script generated for node S3 bucket
+S3bucket_node1 = glueContext.create_dynamic_frame.from_options(
+    format_options={&#34;quoteChar&#34;: &#39;&#34;&#39;, &#34;withHeader&#34;: True, &#34;separator&#34;: &#34;,&#34;},
+    connection_type=&#34;s3&#34;,
+    format=&#34;csv&#34;,
+    connection_options={
+        &#34;paths&#34;: [&#34;s3://&lt;BUCKET NAME&gt;/tickets/dms_sample/mlb_data/&#34;],
+        &#34;recurse&#34;: True,
+    },
+    transformation_ctx=&#34;S3bucket_node1&#34;,
+)
+
+# Script generated for node ApplyMapping
+ApplyMapping_node2 = ApplyMapping.apply(
+    frame=S3bucket_node1,
+    mappings=[
+        (&#34;mlb_id&#34;, &#34;string&#34;, &#34;mlb_id&#34;, &#34;int&#34;),
+        (&#34;mlb_name&#34;, &#34;string&#34;, &#34;mlb_name&#34;, &#34;string&#34;),
+        (&#34;mlb_pos&#34;, &#34;string&#34;, &#34;mlb_pos&#34;, &#34;string&#34;),
+        (&#34;mlb_team&#34;, &#34;string&#34;, &#34;mlb_team&#34;, &#34;string&#34;),
+        (&#34;mlb_team_long&#34;, &#34;string&#34;, &#34;mlb_team_long&#34;, &#34;string&#34;),
+        (&#34;bats&#34;, &#34;string&#34;, &#34;bats&#34;, &#34;string&#34;),
+        (&#34;throws&#34;, &#34;string&#34;, &#34;throws&#34;, &#34;string&#34;),
+        (&#34;birth_year&#34;, &#34;string&#34;, &#34;birth_year&#34;, &#34;int&#34;),
+        (&#34;bp_id&#34;, &#34;string&#34;, &#34;bp_id&#34;, &#34;int&#34;),
+        (&#34;bref_id&#34;, &#34;string&#34;, &#34;bref_id&#34;, &#34;int&#34;),
+        (&#34;bref_name&#34;, &#34;string&#34;, &#34;bref_name&#34;, &#34;string&#34;),
+        (&#34;cbs_id&#34;, &#34;string&#34;, &#34;cbs_id&#34;, &#34;int&#34;),
+        (&#34;cbs_name&#34;, &#34;string&#34;, &#34;cbs_name&#34;, &#34;string&#34;),
+        (&#34;cbs_pos&#34;, &#34;string&#34;, &#34;cbs_pos&#34;, &#34;string&#34;),
+        (&#34;espn_id&#34;, &#34;string&#34;, &#34;espn_id&#34;, &#34;int&#34;),
+        (&#34;espn_name&#34;, &#34;string&#34;, &#34;espn_name&#34;, &#34;string&#34;),
+        (&#34;espn_pos&#34;, &#34;string&#34;, &#34;espn_pos&#34;, &#34;string&#34;),
+        (&#34;fg_id&#34;, &#34;string&#34;, &#34;fg_id&#34;, &#34;int&#34;),
+        (&#34;fg_name&#34;, &#34;string&#34;, &#34;fg_name&#34;, &#34;string&#34;),
+        (&#34;lahman_id&#34;, &#34;string&#34;, &#34;lahman_id&#34;, &#34;int&#34;),
+        (&#34;nfbc_id&#34;, &#34;string&#34;, &#34;nfbc_id&#34;, &#34;int&#34;),
+        (&#34;nfbc_name&#34;, &#34;string&#34;, &#34;nfbc_name&#34;, &#34;string&#34;),
+        (&#34;nfbc_pos&#34;, &#34;string&#34;, &#34;nfbc_pos&#34;, &#34;string&#34;),
+        (&#34;retro_id&#34;, &#34;string&#34;, &#34;retro_id&#34;, &#34;int&#34;),
+        (&#34;retro_name&#34;, &#34;string&#34;, &#34;retro_name&#34;, &#34;string&#34;),
+        (&#34;debut&#34;, &#34;string&#34;, &#34;debut&#34;, &#34;string&#34;),
+        (&#34;yahoo_id&#34;, &#34;string&#34;, &#34;yahoo_id&#34;, &#34;int&#34;),
+        (&#34;yahoo_name&#34;, &#34;string&#34;, &#34;yahoo_name&#34;, &#34;string&#34;),
+        (&#34;yahoo_pos&#34;, &#34;string&#34;, &#34;yahoo_pos&#34;, &#34;string&#34;),
+        (&#34;mlb_depth&#34;, &#34;string&#34;, &#34;mlb_depth&#34;, &#34;string&#34;),
+    ],
+    transformation_ctx=&#34;ApplyMapping_node2&#34;,
+)
+
+# Script generated for node S3 bucket
+additional_options = {
+    &#34;path&#34;: &#34;s3://&lt;BUCKET NAME&gt;/tickets/dms_sample_deltalake/mlb_data/&#34;,
+    &#34;write.parquet.compression-codec&#34;: &#34;snappy&#34;,
+}
+S3bucket_node3_df = ApplyMapping_node2.toDF()
+S3bucket_node3_df.write.format(&#34;delta&#34;).options(**additional_options).mode(&#34;append&#34;).save()
+
+job.commit()
+</code></pre><ol start="2">
+<li>Nhập các thông số sau ở tab Job Details:</li>
 </ol>
 <ul>
-<li>Click <strong>Roles</strong>.</li>
-<li>In the search box, enter <strong>SSM</strong>.</li>
-<li>Click on the <strong>SSM-Role</strong> role.</li>
+<li>Name: job-WorkshopConvertToDeltaTable</li>
+<li>Type: Spark</li>
+<li>Glue version: Glue 3.0 - Supports spark 3.1, Scala 2, Python 3.</li>
+<li>Language: Python 3</li>
+<li>Disable Job bookmark</li>
+<li>Để các option còn lại default</li>
 </ul>
-<p><img alt="S3" src="/images/4.s3/002-s3.png"></p>
-<ol start="2">
-<li>Click <strong>Attach policies</strong>.</li>
-</ol>
-<p><img alt="S3" src="/images/4.s3/003-s3.png"></p>
 <ol start="3">
-<li>In the Search box enter <strong>S3</strong>.</li>
+<li>Nhập <strong>Job parameters</strong> như sau:</li>
 </ol>
 <ul>
-<li>Click the policy <strong>AmazonS3FullAccess</strong>.</li>
-<li>Click <strong>Attach policy</strong>.</li>
+<li>Key: &ndash;conf, Value: spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension &ndash;conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog</li>
+<li>Key: &ndash;datalake-formats, Value: delta</li>
 </ul>
-<p><img alt="S3" src="/images/4.s3/004-s3.png"></p>
-
-<div class="notices tip" ><p>In the production environment, we will grant stricter permissions to the specified S3 bucket. In the framework of this lab, we use the policy <strong>AmazonS3FullAccess</strong> for convenience.</p>
-</div>
-
-<p>Next, we will proceed to create an S3 bucket to store session logs.</p>
+<ol start="4">
+<li>Nhấn Save, Run và đợi đến khi trạng thái run là Succeeded</li>
+</ol>
+<p><img alt="Clean" src="/images/6.clean/48.png"></p>
+<h3 id="glue-crawler-to-register-delta-table-with-glue-catalog">Glue Crawler to register delta table with Glue Catalog</h3>
+<ol>
+<li>
+<p>Mở <a href="https://console.aws.amazon.com/glue/home"> AWS Glue Console </a></p>
+</li>
+<li>
+<p>Chọn <strong>Crawlers</strong></p>
+</li>
+<li>
+<p>Nhấn: <strong>Create crawler</strong></p>
+</li>
+<li>
+<p>Nhập tên là: Create crawler</p>
+</li>
+<li>
+<p>Chọn Data Source,   Include delta lake table paths và Create Symlink tables
+<img alt="Clean" src="/images/6.clean/49.png"></p>
+</li>
+<li>
+<p>Chọn IAM và Chọn Database đích
+<img alt="Clean" src="/images/6.clean/50.png">
+<img alt="Clean" src="/images/6.clean/51.png">
+<img alt="Clean" src="/images/6.clean/52.png">
+<img alt="Clean" src="/images/6.clean/53.png"></p>
+</li>
+<li>
+<p>Tạo và Nhấn <strong>Run crawler</strong> để chạy job
+<img alt="Clean" src="/images/6.clean/54.png">
+<img alt="Clean" src="/images/6.clean/55.png">
+<img alt="Clean" src="/images/6.clean/56.png"></p>
+</li>
+</ol>
+<h3 id="truy-vấn-delta-table-sử-dụng-athena">Truy vấn Delta table sử dụng Athena</h3>
+<ol>
+<li>Truy cập Amazon Athena Console và chọn ticketdata_delta database</li>
+<li>Click Preview table để xem kết quả như sau:
+<img alt="Clean" src="/images/6.clean/57.png"></li>
+</ol>
+<h3 id="phân-quyền-truy-vấn">Phân quyền truy vấn</h3>
+<p>Phần này tương tự như lab: Bước 3 <a href="/6-labdatalakeautomation/6.3-lakeformationlabforapacheicebergtables/">Lake Formation Lab for Apache Hudi Tables</a></p>
 
 
 
@@ -1524,19 +1653,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1714035272"></script>
-    <script src="/js/perfect-scrollbar.min.js?1714035272"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1714035272"></script>
-    <script src="/js/jquery.sticky.js?1714035272"></script>
-    <script src="/js/featherlight.min.js?1714035272"></script>
-    <script src="/js/highlight.pack.js?1714035272"></script>
+    <script src="/js/clipboard.min.js?1714119056"></script>
+    <script src="/js/perfect-scrollbar.min.js?1714119056"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1714119056"></script>
+    <script src="/js/jquery.sticky.js?1714119056"></script>
+    <script src="/js/featherlight.min.js?1714119056"></script>
+    <script src="/js/highlight.pack.js?1714119056"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1714035272"></script>
-    <script src="/js/learn.js?1714035272"></script>
-    <script src="/js/hugo-learn.js?1714035272"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1714119056"></script>
+    <script src="/js/learn.js?1714119056"></script>
+    <script src="/js/hugo-learn.js?1714119056"></script>
 
-    <link href="/mermaid/mermaid.css?1714035272" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1714035272"></script>
+    <link href="/mermaid/mermaid.css?1714119056" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1714119056"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
