@@ -10,7 +10,7 @@ pre : " <b> 5.2 </b> "
 
 Trong bài này, chúng ta sẽ khám phá cách truy vấn các nguồn dữ liệu khác nhau từ Athena. Chúng tôi sẽ sử dụng cơ sở dữ liệu RDS hiện có được tạo như một phần của thiết lập ban đầu dưới dạng datasource-1 và data lake data (được lưu trữ trong S3) dưới dạng datasource-2.
 
-![Athena](/images/5.fwd/83.png) 
+![Athena](/WorkShopTwo/images/5.fwd/83.png) 
 
 
 ### Yêu cầu
@@ -21,18 +21,18 @@ Hoàn thành [Ingestion with DMS](../../3-IngestionwithDMS/_index.md) và [Trans
 1. Tạo S3 endpoint để cho phép S3 truy cập vào Athena connector for Lambda, hãy làm theo các bước được đề cập [ở đây](https://docs.aws.amazon.com/glue/latest/dg/vpc-endpoints-s3.html) để tạo S3 endpoint. Đảm bảo sử dụng cùng subnet sẽ được sử dụng cho hàm Lambda trong bước tiếp theo.
 2. Tại Athena console, chọn **"Data sources"**, **Create data source** button
 
-![Athena](/images/5.fwd/84.png) 
+![Athena](/WorkShopTwo/images/5.fwd/84.png) 
 
 3. Chọn **PostgreSQL** làm data source, và nhấn **Next**
-![Athena](/images/5.fwd/85.png) 
+![Athena](/WorkShopTwo/images/5.fwd/85.png) 
 
 4. Nhập **Data source name**: Postgres_DB
 
-![Athena](/images/5.fwd/86.png) 
+![Athena](/WorkShopTwo/images/5.fwd/86.png) 
 
 5. Tại Connection detail, Chọn **‘Create Lambda function’** 
 
-![Athena](/images/5.fwd/87.png) 
+![Athena](/WorkShopTwo/images/5.fwd/87.png) 
 
 6. Điền các thông tin như sau
 |Field	|Value|
@@ -49,28 +49,28 @@ Hoàn thành [Ingestion with DMS](../../3-IngestionwithDMS/_index.md) và [Trans
 |SpillPrefix |	athena-spill
 |SubnetIds |	Use the SubnetId noted in prerequisites
 
-![Athena](/images/5.fwd/88.png) 
-![Athena](/images/5.fwd/89.png) 
+![Athena](/WorkShopTwo/images/5.fwd/88.png) 
+![Athena](/WorkShopTwo/images/5.fwd/89.png) 
 
 8. Đợi function deploy, Chọn function ở ô **Select or enter a Lambda function**. Nhấn **Next**
 
-![Athena](/images/5.fwd/90.png) 
+![Athena](/WorkShopTwo/images/5.fwd/90.png) 
 
 Nhấn **Create data source**
 
 9. Cấu hình biến môi trường cho Lamda function.
 Thêm một biến môi trường có tên là: Postgres_DB_connection_string và copy dữ liệu của biến **default** 
 
-![Athena](/images/5.fwd/91.png) 
+![Athena](/WorkShopTwo/images/5.fwd/91.png) 
 
-![Athena](/images/5.fwd/92.png) 
+![Athena](/WorkShopTwo/images/5.fwd/92.png) 
 
 10. Xác thực data source đã được tạo ở Athena Console.
-![Athena](/images/5.fwd/93.png) 
+![Athena](/WorkShopTwo/images/5.fwd/93.png) 
 
 11. Truy cập [query editor](https://console.aws.amazon.com/athena/home#/query-editor) chọn new datasource
 
-![Athena](/images/5.fwd/94.png) 
+![Athena](/WorkShopTwo/images/5.fwd/94.png) 
 
 12. Truy vấn kết hợp sử dụng, **“sport_location”** tables của Postgres data source và **“parquet_sporting_event”** table từ data lake
 
@@ -84,4 +84,4 @@ GROUP BY loc.city
 ORDER BY loc.city ASC;
 ```
 
-![Athena](/images/5.fwd/95.png) 
+![Athena](/WorkShopTwo/images/5.fwd/95.png) 

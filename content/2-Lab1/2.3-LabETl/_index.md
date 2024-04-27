@@ -10,7 +10,7 @@ pre : " <b> 2.3 </b> "
 Trong bài lab này, ta sẽ tìm hiểu cách nhập, xử lý và sử dụng streaming data  bằng các dịch vụ serverless của AWS như Kinesis Data Streams, Glue, S3 và Athena. Để mô phỏng đầu vào truyền dữ liệu, chúng tôi sẽ sử dụng Kinesis Data Generator (KDG).
 
 
-![DeployCF](/images/3.connect/1.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/1.png) 
 
 ### Setup môi trường
 
@@ -23,13 +23,13 @@ Sử dụng [DMS Lab Student PreLab CloudFormation](https://catalog.us-east-1.pr
 
 1. Mở [AWS Kinesis console](https://console.aws.amazon.com/kinesis/home)
 2. Chọn “Create data stream”
-![DeployCF](/images/3.connect/2.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/2.png) 
 3. Nhập số liệu như sau:
 - Data stream name: TicketTransactionStreamingData
 - Capacity mode: Provisioned
 - Provisioned shards: 2
 
-![DeployCF](/images/3.connect/3.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/3.png) 
 
 4. Chọn Create data stream
 
@@ -37,33 +37,33 @@ Sử dụng [DMS Lab Student PreLab CloudFormation](https://catalog.us-east-1.pr
 
 1. Mở tab [AWS Glue console](https://console.aws.amazon.com/glue/home)
 2. Tạo database có tên là "tickettransactiondatabase"
-![DeployCF](/images/3.connect/4.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/4.png) 
 3. Tạo tables có tên là "TicketTransactionStreamData" ở trong database "tickettransactiondatabase"
-![DeployCF](/images/3.connect/6.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/6.png) 
 4. Chọn Kinesis làm nguồn, chọn Luồng trong my account để chọn luồng dữ liệu Kinesis, chọn khu vực AWS thích hợp nơi bạn đã tạo luồng, chọn tên luồng là TicketTransactionStreamingData từ danh sách thả xuống, chọn JSON làm định dạng dữ liệu đến, vì chúng ta sẽ gửi JSON payloads từ Kinesis Data Generator theo các bước sau. và nhấp vào Tiếp theo.
-![DeployCF](/images/3.connect/5.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/5.png) 
 
 5. Để trống schema vì chúng ta sẽ bật tính năng schema detection. Để trống partition indices. Chọn Next
-![DeployCF](/images/3.connect/7.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/7.png) 
 6. Review lại tất cả thông tin và nhấn Create
 
-![DeployCF](/images/3.connect/8.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/8.png) 
 
 7. Chọn vào Table để xem các thuộc tính
 
-![DeployCF](/images/3.connect/9.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/9.png) 
 
 ### Tạo và trigger Glue Streaming job
 
 1. Tại mục Data Integration and ETL chọn Glue Studio
 
-![DeployCF](/images/3.connect/10.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/10.png) 
 
 2. Chọn Visual with a blank canvas và nhấn Create
-![DeployCF](/images/3.connect/11.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/11.png) 
 
 3. Chọn Amazon Kinesis từ Source drop down
-![DeployCF](/images/3.connect/12.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/12.png) 
 
 4. Trong bảng bên phải phía dưới “Data source properties - Kinesis Stream”, cấu hình như sau:
 - Amazon Kinesis Source: Data Catalog table
@@ -72,17 +72,17 @@ Sử dụng [DMS Lab Student PreLab CloudFormation](https://catalog.us-east-1.pr
 - Đảm bảo rằng Detect schema được chọn
 - Để tất cả còn lại mặc định
 
-![DeployCF](/images/3.connect/13.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/13.png) 
 
 5. Chọn Amazon S3 từ target drop down list
 
-![DeployCF](/images/3.connect/14.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/14.png) 
 
 6. Chọn **Data target - S3 bucket** và cấu hình như sau:
 - Format: Parquet
 - Compression Type: None
 - S3 Target Location: Select Browse S3 and select the “mod-xxx-dmslabs3bucket-xxx” bucket
-![DeployCF](/images/3.connect/15.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/15.png) 
 
 7. Cuối cùng chọn **Job details** tab và cấu hình theo như sau:
 - Name: TicketTransactionStreamingJob
@@ -116,7 +116,7 @@ Sử dụng [DMS Lab Student PreLab CloudFormation](https://catalog.us-east-1.pr
 }
 ```
 
-![DeployCF](/images/3.connect/16.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/16.png) 
 
 3. Click **Send data** để trigger transaction streaming data.
 
@@ -126,50 +126,50 @@ Sử dụng [DMS Lab Student PreLab CloudFormation](https://catalog.us-east-1.pr
 
 2. Tại AWS Glue menu, chọn Crawlers and click Add crawler
 
-![DeployCF](/images/3.connect/17.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/17.png) 
 
 3. Nhập tên crawler là  TicketTransactionParquetDataCrawler, nhấn Next
 
-![DeployCF](/images/3.connect/18.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/18.png) 
 
 4. Click vào Add a datasource
-![DeployCF](/images/3.connect/19.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/19.png) 
 
 5. Chọn S3 và chỉ định path
-![DeployCF](/images/3.connect/20.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/20.png) 
 
 6. Sau khi thêm datasource, nhấn next
 
-![DeployCF](/images/3.connect/21.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/21.png) 
 
 7. Chọn IAM Role và nhấn Next
 
-![DeployCF](/images/3.connect/22.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/22.png) 
 
 8. Chọn prefix là parquet_ cho tables
 
-![DeployCF](/images/3.connect/23.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/23.png) 
 
 9. Đăt Crawler Schedule chạy mỗi giờ.
-![DeployCF](/images/3.connect/24.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/24.png) 
 10. Review lại  Crawler và Click Create để tạo Crawler
-![DeployCF](/images/3.connect/25.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/25.png) 
 
 11. Sau khi Crawler tạo xong. Nhấn Run crawler để trigger lần đầu.
 
-![DeployCF](/images/3.connect/26.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/26.png) 
 
 12. Khi crawler job stop, chuyển đến Glue Data catalog. Đảm bảo rằng parquet_tickettransactionstreamingdata table xuất hiện
 
-![DeployCF](/images/3.connect/27.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/27.png) 
 
 13. Click vào parquet_tickettransactionstreamingdata table để xem chi tiết
-![DeployCF](/images/3.connect/28.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/28.png) 
 
 ### Trigger dữ liệu bất thường từ Kinesis Data Generator(KDG)
 
 1. Mở Kinesis Data Generator, chọn đúng region. Chọn TicketTransactionStreamingData là Kinesis stream đích 
-![DeployCF](/images/3.connect/29.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/29.png) 
 
 2. Template cho record
 
@@ -192,14 +192,14 @@ Sử dụng [DMS Lab Student PreLab CloudFormation](https://catalog.us-east-1.pr
 }
 ```
 
-![DeployCF](/images/3.connect/30.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/30.png) 
 
 3. Click send data
 
 ### Sử dụng Athena để truy vấn dữ liệu
 1. Mở [ AWS Athena console ](https://console.aws.amazon.com/athena/home)
 2. Chọn AwsDataCatalog làm data source và tickettransactiondatabase là database 
-![DeployCF](/images/3.connect/31.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/31.png) 
 
 3. Sử dụng các truy vấn sau để xem dữ liệu
 ```

@@ -8,7 +8,7 @@ pre = "<b>6. </b>"
 
 ### Giới thiệu
 Trong bài lab này, chúng ta sẽ cùng tìm hiểu về AWS Lake Formation một dịch vụ giúp bạn dễ dàng thiết lập data-lake an toàn trong vài ngày cũng như Athena để truy vấn dữ liệu bạn nhập vào hồ dữ liệu của mình.
-![Clean](/images/6.clean/1.png)
+![Clean](/WorkShopTwo/images/6.clean/1.png)
 
 
 ### Yêu cầu

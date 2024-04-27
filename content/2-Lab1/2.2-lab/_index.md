@@ -21,7 +21,7 @@ Phân tích lưu lượng truy cập web để hiểu rõ hơn nhằm thúc đ�
 
 Trong Kinesis prelab setup, bạn đã hoàn thành các điều kiện tiên quyết cho bài lab này. Trong bài lab, bạn sẽ tạo quy trình Amazon Managed Service cho Apache Flink.
 
-![DeployCF](/images/2.prerequisite/WS5.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS5.png) 
 
 ### Set up Amazon Analytics Studio Application thông qua CloudFormation stack deployment
 
@@ -30,7 +30,7 @@ Trong Kinesis prelab setup, bạn đã hoàn thành các điều kiện tiên qu
 
 2. Điền các tham số , chọn IAM và check vào box "I acknowledge that AWS CloudFormation might create IAM resources."
 
-![DeployCF](/images/2.prerequisite/WS9.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS9.png) 
 
 3. Stack Sex taoj ra 6 Amazon Kinesis Data Streams trong Amazon Kinesis Console
 
@@ -46,44 +46,44 @@ Trong Kinesis prelab setup, bạn đã hoàn thành các điều kiện tiên qu
 
 - anomalydetectionstream – ghi lại các bản ghi có điểm bất thường lớn hơn 2
 
-![DeployCF](/images/2.prerequisite/WS10.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS10.png) 
 
 4. CloudFormation Stack cũng sẽ tạo một ứng dụng Amazon Analytics Studio có tên là kda-flink-prelab-RealtimeApplicationNotebook trong tab Amazon Kinesis Application Console. Chúng ta sẽ viết Studio Notebook tương tác trong Apache Zeppelin để phân tích dữ liệu theo thời gian thực.
 
-![DeployCF](/images/2.prerequisite/WS11.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS11.png) 
 
 5. Chạy Ứng dụng Studio bằng cách chọn kda-flink-prelab-RealtimeApplicationNotebook trong tab Studio. Chọn “Run” lần nữa trên màn hình tiếp theo.
-![DeployCF](/images/2.prerequisite/WS12.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS12.png) 
 
 ### Tạo lưu lượng truy cập trang web theo thời gian thực bằng Amazon Kinesis Data Generator (KDG)
 1. Mở output  Amazon CloudFormation console click vào link Amazon Kinesis Data Generator
-![DeployCF](/images/2.prerequisite/WS13.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS13.png) 
 
 2. Bắt đầu gửi traffic
 ```  
 {"browseraction":"Impression", "site": "https://www.mysite.com"}
 ```
-![DeployCF](/images/2.prerequisite/WS14.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS14.png) 
 
 ```
   {"browseraction":"Click", "site": "https://www.mysite.com"}
 ```
 
-![DeployCF](/images/2.prerequisite/WS15.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS15.png) 
 
 Bạn có thể xem số lượng được gửi đến data stream
 
-![DeployCF](/images/2.prerequisite/WS16a.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS16a.png) 
 
 Sau 30 giây thì dừng
 
 ### Thực hiện phân tích dữ liệu thời gian thực
 1. Mở   Amazon Kinesis Application Console, chọn kda-prelab-template-RealtimeApplicationNotebook. Chọn “Open in Apache Zeppelin”.
-![DeployCF](/images/2.prerequisite/WS16.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS16.png) 
 
 2. Tại Apache Zeppelin Console, chọn Create new note. Tên notebook là kda_Interactive_notebook
-![DeployCF](/images/2.prerequisite/WS18.png) 
-![DeployCF](/images/2.prerequisite/WS19.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS18.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS19.png) 
 
 3. Thực hiện phân tích tương tác theo thời gian thực với luồng dữ liệu Kinesis.
 - Tạo bảng Flink bằng Truy vấn SQL Flink
@@ -96,50 +96,50 @@ Sau 30 giây thì dừng
 
 - Notebook cũng có [tại đây](https://aws-bigdata-blog.s3.amazonaws.com/DE-ID-KDA-Lab/kda_realtime_inetractive_streaming_notebook_2J9H888TM.zpln). Bạn có thể tải về và imported thông qua Apache Zeppelin console.
 
-![DeployCF](/images/2.prerequisite/WS19aa.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS19aa.png) 
 
 - Sau đó, bạn có thể mở notebook và chạy từng đoạn một.
-![DeployCF](/images/2.prerequisite/WS19bb.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS19bb.png) 
 
 - Sơ đồ luồng
-![DeployCF](/images/2.prerequisite/WS19c.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS19c.png) 
 
 ### Chạy Apache Zeppelin
 
 1. Chạy các scripts tạo bảng
 
-![DeployCF](/images/2.prerequisite/WS20.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS20.png) 
 
 2. User Defined Function (UDF) thực hiện Phát hiện bất thường trong thời gian thực bằng thuật toán Random Cut Forest algorithm
 
-![DeployCF](/images/2.prerequisite/WS22.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS22.png) 
 
 3. Bạn có thể xem dữ liệu thời gian thực từ các lượt truy cập trang web bằng cách chạy truy vấn ở Bước #3
-![DeployCF](/images/2.prerequisite/WS23.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS23.png) 
 
 4. Tạo impressionstream bằng cách lọc messages từ tickerstream
 
-![DeployCF](/images/2.prerequisite/WS24.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS24.png)
 
 5. Tạo clickstream bằng cách lọc messages từ tickerstream
 
-![DeployCF](/images/2.prerequisite/WS25.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS25.png)
 
 6. Tính toán Tỷ lệ nhấp (CTR) và điền vào ctrstream.
-![DeployCF](/images/2.prerequisite/WS26.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS26.png)
 
 7. Bạn có thể xem Tỷ lệ nhấp trong thời gian thực bằng cách thực hiện Bước 7.
-![DeployCF](/images/2.prerequisite/WS27.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS27.png)
 
 8. Sử dụng UDF (RRandom Cut Forest) để tạo điểm bất thường.
-![DeployCF](/images/2.prerequisite/WS28.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS28.png)
 9. Populate anomalydetectionstream bằng cách thực hiện step 9
-![DeployCF](/images/2.prerequisite/WS29.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS29.png) 
 10. Bây giờ hãy kiểm tra điểm bất thường từ thuật toán Random Cut Forest trong thời gian thực:
-![DeployCF](/images/2.prerequisite/WS30.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS30.png)
 
 11. Bạn sẽ bắt đầu nhận được thông báo trong email của mình khi phát hiện thấy sự bất thường:
-![DeployCF](/images/2.prerequisite/WS31.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS31.png)
 
 12. Nếu bạn không nhận được email thông báo bất thường trong lần thử đầu tiên
 
@@ -163,5 +163,5 @@ Sau 30 giây thì dừng
 
 1. Xong khi hoàn thành bài lab. Delete kda-flink-pre-lab
 
-![DeployCF](/images/2.prerequisite/WS32.png)
-![DeployCF](/images/2.prerequisite/WS33.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS32.png)
+![DeployCF](/WorkShopTwo/images/2.prerequisite/WS33.png)

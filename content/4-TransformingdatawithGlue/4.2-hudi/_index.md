@@ -32,18 +32,18 @@ Trong bài lab này, chúng ta sẽ học được:
 1. Hoàn thành  [Main Lab](../../3-IngestionwithDMS/3.1-DMS-Migration-Lab/_index.md) or [Autocomplete DMS Lab](../../3-IngestionwithDMS/3.2-Private-instance/_index.md)
 
 2. Source RDS database và trạng thái cdctask là ‘Replication ongoing’
-![DeployCF](/images/4.s3/41.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/41.png) 
 
 3. Tên của S3 bucket trong s3-target-endpoint DMS
-![DeployCF](/images/4.s3/42.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/42.png) 
 
 ### Step 1 - Tạo Glue job và HUDI tables
 1. Truy cập **AWS Glue Console** và chọn Jobs
 
-![DeployCF](/images/4.s3/43.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/43.png) 
 
 2. Chọn **Spark script editor**, nhấn **Create a new script with boilerplate code** option và click **Create**
-![DeployCF](/images/4.s3/44.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/44.png) 
 
 3. Copy đoạn code sau và past vào Glue script editor
 
@@ -301,7 +301,7 @@ job.commit()
 11. Nhập **Job parameters**
 12. Nhấn Save và click **Run**
 13. Đợi tới khi Succeeded
-![DeployCF](/images/4.s3/45.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/45.png) 
 14. Glue job sẽ tạo HUDI tables ticket_purchase_hist
 
 ### Step 2 – Truy vấn HUDI table trong Athena
@@ -309,14 +309,14 @@ job.commit()
 1. Đảm báo rằng HUDI table được tạo thành công. Click vào Tables 
 
 2. Bạn sẽ thấy new tables là ticket_purchase_hist và database là hudi_sample
-![DeployCF](/images/4.s3/46.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/46.png) 
 
 3. Truy cập Amazon Athena Console và chọn hudi_sample Database
 4. Setup nơi lưu kết quả.
 
-![DeployCF](/images/4.s3/47.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/47.png) 
 
-![DeployCF](/images/4.s3/48.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/48.png) 
 
 5. Chọn ellipsis và **Preview table**, ticket_purchase_hist
 6. Count ticket_purchase_hist bằng cách chạy query sau
@@ -324,10 +324,10 @@ job.commit()
 select count(1) from hudi_sample.ticket_purchase_hist
 ```
 
-![DeployCF](/images/4.s3/49.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/49.png) 
 
 7. Kết quả HUDI tables
-![DeployCF](/images/4.s3/50.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/50.png) 
 
 ### Step 3 – HUDI HUDI configurations
 
@@ -348,19 +348,19 @@ Xem thêm các configurations khác [Apache Hudi documentation](https://hudi.apa
 1. Làm theo các bước ở đây để tạo CDC data -  [Generate CDC Data](https://catalog.us-east-1.prod.workshops.aws/workshops/976050cc-0606-4b23-b49f-ca7b8ac4b153/en-US/400/401/410-pre-lab-1#generate-and-replicate-the-cdc-data-(optional))
 
 2. Sau khi CDC data được tạo, đảm bảo rằng **cdctask** trong DMS cập nhập bản ghi như bên dưới:
-![DeployCF](/images/4.s3/51.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/51.png) 
 
 3. Chạy Glue job glue-hudi-job để upsert the CDC changestới HUDI table ticket_purchase_hist. Sau khi Glue job chạy thành công. Bạn có thể truy cập [ Amazon Athena Console ](https://console.aws.amazon.com/athena) để xác minh việc tăng số lượng bản ghi.
-![DeployCF](/images/4.s3/52.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/52.png) 
 
 ### Step 5 – Chạy Incremental Queries sử dụng Spark SQL
 
 1. Truy cập AWS Glue Console, click **Job** 
 
-![DeployCF](/images/4.s3/53.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/53.png) 
 
 2. Chọn gluehudijob. Nhấn **Clone job** ở **Action**
-![DeployCF](/images/4.s3/54.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/54.png) 
 
 3. Copy đoạn code sau.
 ```
@@ -466,7 +466,7 @@ job.commit()
 6. Đợi status chuyển Succeeded
 7. Truy cập Amazon Athena console và truy vấn table ticket_purchase_hist_incremental
 
-![DeployCF](/images/4.s3/55.png) 
+![DeployCF](/WorkShopTwo/images/4.s3/55.png) 
 
 ### Tổng kết 
 Chúng ta đã thực hiện được:

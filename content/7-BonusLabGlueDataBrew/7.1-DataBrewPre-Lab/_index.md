@@ -15,6 +15,6 @@ Trong bài lab này, chúng ta sẽ sử dụng AWS Glue DataBrew để khám ph
 
 2. Sau khi deploy stack thành công. Nhấn **Output** để xem các thông tin
 
-![Clean](/images/7.DataBrewDataBrew/1.png)
+![Clean](/WorkShopTwo/images/7.DataBrewDataBrew/1.png)
 
 Ta sẽ sử dụng các tham số  **DatasetS3Path, DataBrewLabRole and DataBrewOutputS3Bucket** trong bài lab này.

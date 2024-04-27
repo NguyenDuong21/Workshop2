@@ -17,8 +17,8 @@ pre : " <b> 6.4 </b> "
 
 ### Tạo Glue Job để load dữ liệu vào delta table
 1. Tạo glue job và past đoạn code sau đây vào.
-![Clean](/images/6.clean/46.png)
-![Clean](/images/6.clean/47.png)
+![Clean](/WorkShopTwo/images/6.clean/46.png)
+![Clean](/WorkShopTwo/images/6.clean/47.png)
 
 ```
 import sys
@@ -110,7 +110,7 @@ job.commit()
 
 4. Nhấn Save, Run và đợi đến khi trạng thái run là Succeeded
 
-![Clean](/images/6.clean/48.png)
+![Clean](/WorkShopTwo/images/6.clean/48.png)
 
 ### Glue Crawler to register delta table with Glue Catalog
 
@@ -119,23 +119,23 @@ job.commit()
 3. Nhấn: **Create crawler**
 4. Nhập tên là: Create crawler
 5. Chọn Data Source,   Include delta lake table paths và Create Symlink tables
-![Clean](/images/6.clean/49.png)
+![Clean](/WorkShopTwo/images/6.clean/49.png)
 
 6. Chọn IAM và Chọn Database đích
-![Clean](/images/6.clean/50.png)
-![Clean](/images/6.clean/51.png)
-![Clean](/images/6.clean/52.png)
-![Clean](/images/6.clean/53.png)
+![Clean](/WorkShopTwo/images/6.clean/50.png)
+![Clean](/WorkShopTwo/images/6.clean/51.png)
+![Clean](/WorkShopTwo/images/6.clean/52.png)
+![Clean](/WorkShopTwo/images/6.clean/53.png)
 
 7. Tạo và Nhấn **Run crawler** để chạy job
-![Clean](/images/6.clean/54.png)
-![Clean](/images/6.clean/55.png)
-![Clean](/images/6.clean/56.png)
+![Clean](/WorkShopTwo/images/6.clean/54.png)
+![Clean](/WorkShopTwo/images/6.clean/55.png)
+![Clean](/WorkShopTwo/images/6.clean/56.png)
 
 ### Truy vấn Delta table sử dụng Athena
 1. Truy cập Amazon Athena Console và chọn ticketdata_delta database
 2. Click Preview table để xem kết quả như sau:
-![Clean](/images/6.clean/57.png)
+![Clean](/WorkShopTwo/images/6.clean/57.png)
 
 ### Phân quyền truy vấn
 Phần này tương tự như lab: Bước 3 [Lake Formation Lab for Apache Hudi Tables](../6.3-LakeFormationLabforApacheIcebergTables/_index.md)

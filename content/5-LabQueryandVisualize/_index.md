@@ -9,7 +9,7 @@ pre : " <b> 5. </b> "
 ### Giới thiệu
 Bài lab này giới thiệu về AWS Glue, Amazon Athena và Amazon QuickSight. AWS Glue là danh mục dữ liệu và dịch vụ ETL được quản lý toàn phần; Amazon Athena cung cấp khả năng chạy các truy vấn đặc biệt trên dữ liệu trong kho dữ liệu của bạn; và Amazon QuickSight cung cấp khả năng trực quan hóa dữ liệu bạn nhập.
 
-![DeployCF](/images/5.fwd/1(1).png) 
+![DeployCF](/WorkShopTwo/images/5.fwd/1(1).png) 
 
 Dưới đây là các bước của bài lab:
 - [Athena and QuickSight](./5.1-AthenaandQuickSight/_index.md)

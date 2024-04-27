@@ -23,9 +23,9 @@ CREATE DATABASE ticketdata_iceberg LOCATION 's3://<BUCKET_NAME>/data/ticketdata_
 ```
 2. Tạo Glue job
 
-![Clean](/images/6.clean/40.png)
+![Clean](/WorkShopTwo/images/6.clean/40.png)
 
-![Clean](/images/6.clean/41.png)
+![Clean](/WorkShopTwo/images/6.clean/41.png)
 
 3. Copy đoạn code sau và dán vào Glue script editor
 ```
@@ -100,18 +100,18 @@ job.commit()
 - Key: --datalake-formats, Value: iceberg
 
 6. Nhấn Save và click run. Đợi đến khi Run status là Succeeded
-![Clean](/images/6.clean/42.png)
+![Clean](/WorkShopTwo/images/6.clean/42.png)
 
 7. Glue job đã tạo tables ticket_purchase_hist
 
 ### Bước 2 Truy vấn Iceberg table trong Athena
 1. Xác định  Iceberg table được tạo thành công.
 2. Ta thấy tables và data mới ticket_purchase_hist ticketdata_iceberg.
-![Clean](/images/6.clean/43.png)
+![Clean](/WorkShopTwo/images/6.clean/43.png)
 
 3. Truy vấn ticket_purchase_hist từ ticketdata_iceberg database
-![Clean](/images/6.clean/44.png)
-![Clean](/images/6.clean/45.png)
+![Clean](/WorkShopTwo/images/6.clean/44.png)
+![Clean](/WorkShopTwo/images/6.clean/45.png)
 
 
 ### Phân quyền truy vấn

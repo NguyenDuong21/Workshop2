@@ -35,10 +35,10 @@ Trong bài lab này, chúng ta sẽ hoàn thành các task sau:
 ### Truy vấn dữ liệu với Amazon Athena
 1. Truy cập Athena
 
-![Athena](/images/5.fwd/1.png) 
+![Athena](/WorkShopTwo/images/5.fwd/1.png) 
 
 2. Chọn database **"ticketdata"**
-![Athena](/images/5.fwd/2.png) 
+![Athena](/WorkShopTwo/images/5.fwd/2.png) 
 
 3. Chọn table **"parquet_sporting_event_ticket"** để xem các trường
 4. Copy đoạn SQL sau và nhấn **Run**
@@ -63,16 +63,16 @@ AND e.location_id = l.id;
 
 Kết quả như sau:
 
-![Athena](/images/5.fwd/3.png) 
-![Athena](/images/5.fwd/4.png) 
+![Athena](/WorkShopTwo/images/5.fwd/3.png) 
+![Athena](/WorkShopTwo/images/5.fwd/4.png) 
 
 5. Chọn **Create** và **View from query**
 
 6. Đặt tên view là sporting_event_info vào click **Create**
-![Athena](/images/5.fwd/5.png) 
+![Athena](/WorkShopTwo/images/5.fwd/5.png) 
 
 View đã được khởi tạo
-![Athena](/images/5.fwd/6.png) 
+![Athena](/WorkShopTwo/images/5.fwd/6.png) 
 
 
 7. Copy đoạn Sql sau sang một tab mới
@@ -98,21 +98,21 @@ WHERE
 t.sporting_event_id = e.event_id
 AND t.ticketholder_id = p.id
 ```
-![Athena](/images/5.fwd/7.png) 
+![Athena](/WorkShopTwo/images/5.fwd/7.png) 
 
 8. Lưu lại với tên: create_view_sporting_event_ticket_info
-![Athena](/images/5.fwd/8.png) 
+![Athena](/WorkShopTwo/images/5.fwd/8.png) 
 
 Click **Run**
 
-![Athena](/images/5.fwd/9.png) 
+![Athena](/WorkShopTwo/images/5.fwd/9.png) 
 
 
 Kết quả xuất hiện như sau:
-![Athena](/images/5.fwd/10.png) 
+![Athena](/WorkShopTwo/images/5.fwd/10.png) 
 
 9. Đặt tên view là: sporting_event_ticket_info và click **Create**
-![Athena](/images/5.fwd/11.png) 
+![Athena](/WorkShopTwo/images/5.fwd/11.png) 
 
 10. Copy đoạn Sql sau sang một tab mới
 ```
@@ -128,82 +128,82 @@ ORDER BY 1;
 ```
 
 Lưu với tên là: analytics_sporting_event_ticket_info
-![Athena](/images/5.fwd/12.png) 
+![Athena](/WorkShopTwo/images/5.fwd/12.png) 
 
 Click Run
 
-![Athena](/images/5.fwd/13.png) 
+![Athena](/WorkShopTwo/images/5.fwd/13.png) 
 
 ### Build an Amazon QuickSight Dashboard
 #### Set up QuickSight
 1. Truy cập **QuickSight**
-![Athena](/images/5.fwd/15.png) 
+![Athena](/WorkShopTwo/images/5.fwd/15.png) 
 
 2. **Sign up for QuickSight.**
 
-![Athena](/images/5.fwd/16.png) 
+![Athena](/WorkShopTwo/images/5.fwd/16.png) 
 
 3. Chọn Enterprise Version
 
 4. Continue
-![Athena](/images/5.fwd/17.png) 
+![Athena](/WorkShopTwo/images/5.fwd/17.png) 
 
 5. Chọn No, Maybe Later, Ở màn hình mới để mặc định.
 6. Chọn region và check vào các box, enable auto discovery, Amazon Athena, and Amazon S3. Nhập tên và email cho account QuickSight
 7. Chọn DMS bucket và chọn **Finish**
 
-![Athena](/images/5.fwd/18.png) 
+![Athena](/WorkShopTwo/images/5.fwd/18.png) 
 
-![Athena](/images/5.fwd/19.png) 
+![Athena](/WorkShopTwo/images/5.fwd/19.png) 
 
 Nhấn **Finish**
 
 8. Chọn New analysis
-![Athena](/images/5.fwd/20.png) 
+![Athena](/WorkShopTwo/images/5.fwd/20.png) 
 
 9. Chọn **New dataset**
-![Athena](/images/5.fwd/21.png) 
+![Athena](/WorkShopTwo/images/5.fwd/21.png) 
 
 10. Tại màn Create a Dataset, chọn Athena
 
-![Athena](/images/5.fwd/22.png) 
+![Athena](/WorkShopTwo/images/5.fwd/22.png) 
 
 11. Data source name: ticketdata-qs, và chọn **Validate connection**
 
 12. Click **Create data source**
-![Athena](/images/5.fwd/23.png) 
+![Athena](/WorkShopTwo/images/5.fwd/23.png) 
 
 13. Chọn database **ticketdata**
 
 14. Chọn bảng **sporting_event_ticket_info** và nhấn **Select**
 
-![Athena](/images/5.fwd/24.png) 
+![Athena](/WorkShopTwo/images/5.fwd/24.png) 
 
 15. Chọn option **Import to SPICE for quicker analytics** và nhấn **Visualize**. 
 
-![Athena](/images/5.fwd/25.png) 
+![Athena](/WorkShopTwo/images/5.fwd/25.png) 
 
 Chúng ta có thể quan sát thấy QuickSight Visualize interface và bắt đầu xây dựng dashboard
 
-![Athena](/images/5.fwd/26.png) 
+![Athena](/WorkShopTwo/images/5.fwd/26.png) 
 
 ### Tạo QuickSight Charts
 Trong phần này chúng ta sẽ cùng tìm hiểu các loại chart
 
 1. Chọn cột ticket_price để tạo chart.
 2. Chọn **expand icon** và chọn **Show as Currency**
-![Athena](/images/5.fwd/27.png) 
+![Athena](/WorkShopTwo/images/5.fwd/27.png) 
 
 3. Click **Add button** từ Visuals pane
 - Visual types: Vertical bar chart
 - X-axis Fields list chọn **event_date_time**
 - Y-axis chọn **ticket_price** từ Field list.
 
-![Athena](/images/5.fwd/28.png) 
+![Athena](/WorkShopTwo/images/5.fwd/28.png) 
 
 4. Bạn có thể kéo và di chuyển các hình ảnh khác để điều chỉnh không gian trong trang tổng quan. Trong danh sách Trường, nhấp và kéo trường Seat_level vào hộp Nhóm/Màu. Bạn cũng có thể sử dụng thanh trượt bên dưới trục x để vừa với tất cả dữ liệu.
 
-![Athena](/images/5.fwd/29.png) 
+![Athena](/WorkShopTwo/images/5.fwd/29.png) 
 
 5. Trong Visuals pane, chọn **Vertical bar chart** và **Clustered bar combo chart** icon
 
@@ -211,11 +211,11 @@ Trong phần này chúng ta sẽ cùng tìm hiểu các loại chart
 
 7. Tại **Lines** box, chọn **Aggregate: Count Distinct**. 
 
-![Athena](/images/5.fwd/30.png) 
+![Athena](/WorkShopTwo/images/5.fwd/30.png) 
 
 8. Chọn **insight** icon
 
-![Athena](/images/5.fwd/31.png) 
+![Athena](/WorkShopTwo/images/5.fwd/31.png) 
 
 
 ### Tạo QuickSight Parameters
@@ -224,7 +224,7 @@ Trong phần này chúng ta sẽ tạo parameters cho dashboard và thêm filter
 
 1. Chọn Parameters từ tool bar
 
-![Athena](/images/5.fwd/32.png) 
+![Athena](/WorkShopTwo/images/5.fwd/32.png) 
 
 2. Chọn **Add** để tạo parameter
 3. Đặt tên là EventFrom
@@ -233,7 +233,7 @@ Trong phần này chúng ta sẽ tạo parameters cho dashboard và thêm filter
 6. Hãy chọn giá trị từ lịch làm ngày bắt đầu có sẵn trong biểu đồ của bạn cho event_date_time
 
 7. Chọn **Create** và đóng dialog
-![Athena](/images/5.fwd/33.png) 
+![Athena](/WorkShopTwo/images/5.fwd/33.png) 
 
 8. Tạo thêm parameter với thông số sau:
 - Name: EventTo
@@ -242,31 +242,31 @@ Trong phần này chúng ta sẽ tạo parameters cho dashboard và thêm filter
 - Hãy chọn giá trị từ lịch làm ngày bắt đầu có sẵn trong biểu đồ của bạn cho event_date_time
 - Click **Create**
 
-![Athena](/images/5.fwd/35.png) 
+![Athena](/WorkShopTwo/images/5.fwd/35.png) 
 
 9. Trong màn hình tiếp theo. Click vào 3 chấm của **EventFrom** parameter và chọn **Add control**
 
-![Athena](/images/5.fwd/36.png) 
+![Athena](/WorkShopTwo/images/5.fwd/36.png) 
 
 10. Nhập name là Event From và nhấn **Add**
-![Athena](/images/5.fwd/37.png) 
+![Athena](/WorkShopTwo/images/5.fwd/37.png) 
 
 11. Tương tự với **EventTo** 
-![Athena](/images/5.fwd/38.png) 
+![Athena](/WorkShopTwo/images/5.fwd/38.png) 
 
 Bây giờ bạn có thể xem và mở rộng phần Kiểm soát phía trên biểu đồ.
 
-![Athena](/images/5.fwd/39.png) 
+![Athena](/WorkShopTwo/images/5.fwd/39.png) 
 
 ### Tạo QuickSight Filter
 
 1. Chọn **Filter**
 2. Click (+) để thêm filter event_date_time
 
-![Athena](/images/5.fwd/40.png) 
+![Athena](/WorkShopTwo/images/5.fwd/40.png) 
 
 3. Chọn edit
-![Athena](/images/5.fwd/41.png) 
+![Athena](/WorkShopTwo/images/5.fwd/41.png) 
 
 4. Chọn **All applicable visuals** và **Applied To** dropdown
 
@@ -275,21 +275,21 @@ Bây giờ bạn có thể xem và mở rộng phần Kiểm soát phía trên b
 
 7. Start date parameter: **EventFrom**
 8. End date parameter: **EventTo**
-![Athena](/images/5.fwd/42.png) 
+![Athena](/WorkShopTwo/images/5.fwd/42.png) 
 
 9. Click **Apply**.
 
 ### Thêm Calculated Fields
 
 1. Chọn **Add Calculated Field** 
-![Athena](/images/5.fwd/43.png) 
+![Athena](/WorkShopTwo/images/5.fwd/43.png) 
 
 2. Nhập name là: event_day_of_week
 
 3. Formula: extract('WD',{event_date_time})
 
 4. Click **Save**
-![Athena](/images/5.fwd/44.png) 
+![Athena](/WorkShopTwo/images/5.fwd/44.png) 
 
 5. Thêm một trường được tính toán khác với các thuộc tính sau:
 - Calculated field name: event_hour_of_day
@@ -297,7 +297,7 @@ Bây giờ bạn có thể xem và mở rộng phần Kiểm soát phía trên b
 
 6. Chọn Visualize icon từ the Tool bar và nhấn **Add visual**
 
-![Athena](/images/5.fwd/45.png) 
+![Athena](/WorkShopTwo/images/5.fwd/45.png) 
 
 7. Field type" scatter plot
 
@@ -305,10 +305,10 @@ Bây giờ bạn có thể xem và mở rộng phần Kiểm soát phía trên b
 - X-axis: "event_hour_of_day"
 - Y-axis: "event_day_of_week"
 - Size: "ticket_price"
-![Athena](/images/5.fwd/46.png) 
+![Athena](/WorkShopTwo/images/5.fwd/46.png) 
 
 Pushlish hoặc Share
-![Athena](/images/5.fwd/47.png) 
+![Athena](/WorkShopTwo/images/5.fwd/47.png) 
 
 Dashboard là ảnh chụp nhanh phân tích chỉ đọc mà bạn có thể chia sẻ với những người dùng Amazon QuickSight khác nhằm mục đích báo cáo. Trong Dashboard, những người dùng khác vẫn có thể xem hình ảnh và dữ liệu nhưng điều đó sẽ không sửa đổi tập dữ liệu.
 
@@ -327,4 +327,4 @@ Bạn có thể thêm tag sau khi đã tạo workgroup. Để tạo tag:
 3. Trên tab tags, bấm vào Manage tags, sau đó chỉ định key và value cho tag.
 4. Khi bạn hoàn tất, hãy nhấp vào **Save Changes**.
 
-![Athena](/images/5.fwd/82.png) 
+![Athena](/WorkShopTwo/images/5.fwd/82.png) 

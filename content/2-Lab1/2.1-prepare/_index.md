@@ -20,7 +20,7 @@ Phần này sẽ là phần thiết lập môi trường cho bài lab.
 
 Sau khi deploy CloudFormation template Kinesis_PreLab.yaml ta sẽ được kiến trúc sau:
 
-![VisualizationData](/images/1.png)
+![VisualizationData](/WorkShopTwo/images/1.png)
 
 CloudFormation template sẽ tạo các resource sau:
 - 2 S3 buckets: dùng để lưu trữ dữ liệu thô và dữ liệu đã được xử lý
@@ -34,7 +34,7 @@ CloudFormation template sẽ tạo các resource sau:
 
 Nhập các tham số vào trong form:
 
-![DeployCF](/images/2.prerequisite/20-workshop2.png) 
+![DeployCF](/WorkShopTwo/images/2.prerequisite/20-workshop2.png) 
 
 2. Điền các thông số trong form:
 - **Username**: Username để đăng nhập vào Kinesis Data Generator
@@ -45,21 +45,21 @@ Nhập các tham số vào trong form:
 
 3. Chọn Create. CloudFormation chuyển hướng bạn đến ngăn xếp hiện có của bạn. Sau vài phút, kinesis-pre-lab hiển thị trạng thái CREATE_COMPLETE.
 
-![DeployCFComplete](/images/2.prerequisite/20-workshop3.png) 
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/20-workshop3.png) 
 
 4. Trong khi stack runs, ta sẽ nhân được email như sau:
 
-![DeployCFComplete](/images/2.prerequisite/Workshop2-4.jpg) 
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/Workshop2-4.jpg) 
 
 5. Xác nhập subscription
-![DeployCFComplete](/images/2.prerequisite/Workshop2-5.jpg) 
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/Workshop2-5.jpg) 
 
 6. Khi stack deployed, click Outputs để xem thêm thông tin:
 - **KinesisDataGeneratorUrl**: Đây là Kinesis Data Generator (KDG) URL
 - **RawBucketName**: Tên bucket lưu raw data từ Kinesis Data Generator (KDG)
 - **ProcessedBucketName**: Tên bucket lưu transformed data
 
-![DeployCFComplete](/images/2.prerequisite/Workshop2-6.jpg) 
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/Workshop2-6.jpg) 
 
 **Bạn đã hoàn thành việc triển khai CloudFormation.**
 
@@ -77,11 +77,11 @@ Kiểm tra Cognito User trong Kinesis Data Generator.
 
 1. Click KinesisDataGeneratorUrl trong Outputs tab
 
-![DeployCFComplete](/images/2.prerequisite/Workshop2-7.jpg) 
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/Workshop2-7.jpg) 
 
 2. Đăng nhập bằng username và password nhập vào CloudFormation console
 
-![DeployCFComplete](/images/2.prerequisite/Workshop2-81.png)
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/Workshop2-81.png)
 
 3. Sau khi đăng nhập, bạn sẽ thấy bảng điều khiển Kinesis Data Generator. Cần thiết lập một số  template để  giả lập dòng nhấp chuột
 
@@ -112,21 +112,21 @@ Impression Payload
 ```
 
 Amazon Kinesis Data Generator sẽ trông như thế này
-![DeployCFComplete](/images/2.prerequisite/Workshop2-9.png)
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/Workshop2-9.png)
 
 ### Xác thực email và SMS Subscription
 1. Tại Amazon SNS, chọn Topics để xem.
-![DeployCFComplete](/images/2.prerequisite/WS1.png)
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/WS1.png)
 
 2. Click vào topic để xem chi tiết:
-![DeployCFComplete](/images/2.prerequisite/WS2.png)
+![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/WS2.png)
 ### AWS Lambda function
 
 3. Chọn vào Amazon Lamba để xem các lambda function mà CloudFormation đã tạo cho ta:
- ![DeployCFComplete](/images/2.prerequisite/WS3.png)
+ ![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/WS3.png)
 
 1. Chọn vào lambda function để xem chi tiết:
- ![DeployCFComplete](/images/2.prerequisite/WS4.png)
+ ![DeployCFComplete](/WorkShopTwo/images/2.prerequisite/WS4.png)
 
 
 Tại thời điểm này, chúng ta đã có tất cả các thành phần cần thiết để làm lab.

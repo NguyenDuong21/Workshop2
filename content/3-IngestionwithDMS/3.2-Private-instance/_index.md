@@ -12,7 +12,7 @@ pre : " <b> 3.2. </b> "
 3. Kiểm chứng data
 
 ### Kiến trúc.
-![DeployCF](/images/3.connect/81.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/81.png) 
 
 Cơ sở dữ liệu RDS Postgres được sử dụng làm nguồn bán vé cho các sự kiện thể thao. Nó lưu trữ thông tin giao dịch về giá bán vé cho những người được chọn và chuyển quyền sở hữu vé với các bảng bổ sung để biết chi tiết sự kiện. AWS Database Migration Service (DMS) được sử dụng để tải toàn bộ dữ liệu từ nguồn Amazon RDS sang bộ chứa Amazon S3.
 
@@ -31,18 +31,18 @@ aws s3 cp --recursive --copy-props none s3://aws-dataengineering-day.workshop.aw
 ```
 
 ### Data sau đây sẽ được copy đến s3 bucket của chúng ta:
-![DeployCF](/images/3.connect/82.jpeg) 
+![DeployCF](/WorkShopTwo/images/3.connect/82.jpeg) 
 
 ### Xác minh dữ liệu
 1. Mở S3 console và xem dữ liệu được copy từ CloudShell
-![DeployCF](/images/3.connect/822.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/822.png) 
 2. Sử dụng S3 select để truy vấn s3 data
 
-![DeployCF](/images/3.connect/83.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/83.png) 
 
-![DeployCF](/images/3.connect/84.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/84.png) 
 
-![DeployCF](/images/3.connect/85.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/85.png) 
 
 ### Next Step.
 Tiếp theo, Chúng ta sẽ sử  hoàn thành bài lab với AWS Glue

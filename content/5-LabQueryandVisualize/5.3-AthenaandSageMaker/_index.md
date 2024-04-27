@@ -14,45 +14,45 @@ pre : " <b> 5.3 </b> "
 - Cách sử dụng Jupyter notebooks trong SageMaker để tích hợp với data lake bằng Athena
 - Tạo data frames để thao tác với dữ liệu
 
-![Athena](/images/5.fwd/96.png) 
+![Athena](/WorkShopTwo/images/5.fwd/96.png) 
 
 ### Tạo Amazon SageMaker Notebook Instance
 
 1. Truy cập [Amazon Sagemaker](https://console.aws.amazon.com/sagemaker/home), Tại **Notebook instances** chọn **Create notebook instance**
-![Athena](/images/5.fwd/97.png) 
+![Athena](/WorkShopTwo/images/5.fwd/97.png) 
 
 2. Nhập các thông tin sau:
 - Name: datalake-Sagemaker
 - Type: ml.t3.medium
 - Elastic Inference: none.
 - IAM role: Tạo IAM role Any S3 bucket, gán thêm **AmazonAthenaFullAccess**
-![Athena](/images/5.fwd/98.png) 
+![Athena](/WorkShopTwo/images/5.fwd/98.png) 
 
-![Athena](/images/5.fwd/99.png) 
+![Athena](/WorkShopTwo/images/5.fwd/99.png) 
 
-![Athena](/images/5.fwd/100.png) 
+![Athena](/WorkShopTwo/images/5.fwd/100.png) 
 
 Chọn **Create notebook instance**
-![Athena](/images/5.fwd/101.png) 
+![Athena](/WorkShopTwo/images/5.fwd/101.png) 
 
 3. Đợi Trạng thái của note book thành **InService**. Chọn **Open Jupyter**
-![Athena](/images/5.fwd/02021.png) 
+![Athena](/WorkShopTwo/images/5.fwd/02021.png) 
 
 4. Mở notebook interface
-![Athena](/images/5.fwd/102.png) 
+![Athena](/WorkShopTwo/images/5.fwd/102.png) 
 
 
 ### Kết nối SageMaker Jupyter notebook tới Athena
 
 1. Tại Jupyter notebook tab, Chọn **New** và chọn **conda_python3**
-![Athena](/images/5.fwd/103.png) 
+![Athena](/WorkShopTwo/images/5.fwd/103.png) 
 
 2. Cài đặt PyAthena
 
 ```
 !pip install PyAthena[SQLAlchemy]
 ```
-![Athena](/images/5.fwd/104.png) 
+![Athena](/WorkShopTwo/images/5.fwd/104.png) 
 
 ### Làm việc với panda
 
@@ -76,7 +76,7 @@ df
 ```
 2. Chọn Run và quan sát dataframe,
 
-![Athena](/images/5.fwd/105.png) 
+![Athena](/WorkShopTwo/images/5.fwd/105.png) 
 
 3. 
 ```
@@ -94,11 +94,11 @@ df = pd.read_sql('SELECT sport, \
        order by 1,2,3,4,5  limit 1000;', engine)
 df
 ```
-![Athena](/images/5.fwd/106.png) 
+![Athena](/WorkShopTwo/images/5.fwd/106.png) 
 
 4. Vẽ biểu đồ
 ```
 import matplotlib.pyplot as plt 
 df.plot(x='event_date_time',y='avg_ticket_price')
 ```
-![Athena](/images/5.fwd/107.png) 
+![Athena](/WorkShopTwo/images/5.fwd/107.png) 

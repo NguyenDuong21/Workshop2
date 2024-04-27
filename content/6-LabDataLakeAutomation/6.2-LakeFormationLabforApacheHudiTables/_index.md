@@ -8,9 +8,9 @@ pre : " <b> 6.2 </b> "
 
 ## Bước 1: Tạo Glue job và HUDI tables
 1. Tại Glue console. Tạo glue job với: ** Spark script editor**, **Create a new script with boilerplate code**. Và nhấn **Create**
-![Clean](/images/6.clean/28.png)
+![Clean](/WorkShopTwo/images/6.clean/28.png)
 
-![Clean](/images/6.clean/29.png)
+![Clean](/WorkShopTwo/images/6.clean/29.png)
 
 2. Gán đoạn code sau vào Glue script editor
 ```
@@ -274,11 +274,11 @@ job.commit()
 
 5. Lưu lại và click Run, đợi đến khi trạng thái Run là Succeeded
 
-![Clean](/images/6.clean/31.png)
+![Clean](/WorkShopTwo/images/6.clean/31.png)
 
 ### Bước 2: Truy vấn HUDI table bằng Athena
 1. Truy cập Athena, Chọn hudi_sample database và chạy thử truy vấn như sau:
-![Clean](/images/6.clean/32.png)
+![Clean](/WorkShopTwo/images/6.clean/32.png)
 
 
 ###  Bước 3: Phân quyền truy cập trong Lake Formation
@@ -434,27 +434,27 @@ job.commit()
 1. Tại Lake Forrmation console, chọn Data lake permissions section
 2. Nhấn Grant
 - Với user: lf-developer (Table-based Permissions)
-![Clean](/images/6.clean/33.png)
-![Clean](/images/6.clean/34.png)
+![Clean](/WorkShopTwo/images/6.clean/33.png)
+![Clean](/WorkShopTwo/images/6.clean/34.png)
 - Với user: business_analyst (Column-based Permissions)
-![Clean](/images/6.clean/35.png)
+![Clean](/WorkShopTwo/images/6.clean/35.png)
 
-![Clean](/images/6.clean/36.png)
+![Clean](/WorkShopTwo/images/6.clean/36.png)
 
 - Với user: business_analyst (Cell level access
 )
-![Clean](/images/6.clean/35.png)
+![Clean](/WorkShopTwo/images/6.clean/35.png)
 
-![Clean](/images/6.clean/36.png)
+![Clean](/WorkShopTwo/images/6.clean/36.png)
 
 - Với campaign_manager:
   - Tạo Data filters: 
-![Clean](/images/6.clean/37.png)
-![Clean](/images/6.clean/38.png)
+![Clean](/WorkShopTwo/images/6.clean/37.png)
+![Clean](/WorkShopTwo/images/6.clean/38.png)
 
   - Data permissions cho user: campaign_manager
 
-![Clean](/images/6.clean/39.png)
+![Clean](/WorkShopTwo/images/6.clean/39.png)
 
 
 3. Login vào từng user sử dụng Athena truy vấn để xác minh các quyền.

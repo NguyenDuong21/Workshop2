@@ -23,59 +23,59 @@ pre : " <b> 3.1. </b> "
 ### Giới thiệu
 Bài lab này sẽ giúp bạn hiểu rõ hơn về  AWS Database Migration Service(AWS DMS). Bạn sẽ di chuyển dữ liệu từ cơ sở dữ liệu Amazon Relational Database Service (Amazon RDS) Postgres hiện có sang Amazon Simple Storage Service (Amazon S3) bucket.
 
-![DeployCF](/images/3.connect/34.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/34.png) 
 
 Link GitHub của lab - [https://github.com/aws-samples/data-engineering-for-aws-immersion-day](https://github.com/aws-samples/data-engineering-for-aws-immersion-day)
 
 ### Tạo Subnet group
 
 1. Tại [ DMS console ](https://console.aws.amazon.com/dms/v2/home#createSubnetGroup), chọn  Subnet Groups và Create subnet group.
-![DeployCF](/images/3.connect/35.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/35.png) 
 - Tại Name textbox: dms-lab-subnet-grp
 - Description textbox: Replication instance for production data system
 - VPC: Chọn *-dmslstudv1
 - Chọn subnets và click Add
 
-![DeployCF](/images/3.connect/36.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/36.png) 
 
 2. Chọn Create subnet group
 
 3. Tại DMS console, subnet group displays **Complete**
-![DeployCF](/images/3.connect/37.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/37.png) 
 
 ### Tạo Replication Instance
 
 1. Tại DMS console, chọn [ Replication instances ](https://console.aws.amazon.com/dms/v2/home#createReplicationInstance) để tạo  replication instance mới.
-![DeployCF](/images/3.connect/38.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/38.png) 
 - Name: DMS-Replication-Instance
 - Description: DMS Replication Instance
 - Instance class: dms.t3.medium
 - Chọn engine version mới nhất
 - High Availability: Dev or test workload (Single-AZ)
 - VPC: dmslstudv1
-![DeployCF](/images/3.connect/39.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/39.png) 
 
 - Chọn Advanced để mở rộng
 - Chọn security group là sgdefault
-![DeployCF](/images/3.connect/40.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/40.png) 
 
 2. Tất cả các trường còn lại mặc định
 
 3. DMS console hiển thị trạng thái tạo instance
-![DeployCF](/images/3.connect/41.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/41.png) 
 
 
 ### Tạo MDS Source Endpoint
 
 1. Tại DMS console, chọn Endpoints để tạo source [Endpoint](https://console.aws.amazon.com/dms/v2/home#createNewEndpoint)
-![DeployCF](/images/3.connect/42.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/42.png) 
 
 - Chọn Source Endpoint
 - Endpoint identifier: rds-source-endpoint
 - Source engine: PostgreSQL
 - Access to Endpoint database: Provide access information manually
 - Server name: RDS-Server-Name
-![DeployCF](/images/3.connect/43.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/43.png) 
 
 - Port: 5432
 - SSL mode: none
@@ -86,20 +86,20 @@ Link GitHub của lab - [https://github.com/aws-samples/data-engineering-for-aws
 2. Tất cả còn lại để mặc định, rồi click tạo endpoint. Khi sẵn sàng, trạng thái sẽ chuyển sang active
 3. Kiểm tra lại replication instance
 
-![DeployCF](/images/3.connect/45.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/45.png) 
 
 4. Chọn source endpoint và nhấn Test connection
 
-![DeployCF](/images/3.connect/46.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/46.png) 
 
 5. Click Run test. Nếu thành công sẽ có thông báo "Connection tested successfully" xuất hiện.
 
-![DeployCF](/images/3.connect/47.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/47.png) 
 
 ### Tạo Target Endpoint
 
 1. Tại DMS console, Chọn Endpoint để tạo target [Endpoint](https://console.aws.amazon.com/dms/v2/home#createNewEndpoint)
-![DeployCF](/images/3.connect/48.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/48.png) 
 - Endpoint type: Target endpoint
 - Endpoint identifier: s3-target-endpoint
 - Target engine: Amazon S3
@@ -107,22 +107,22 @@ Link GitHub của lab - [https://github.com/aws-samples/data-engineering-for-aws
 - Bucket name: paste S3 Bucket Name
 - Bucket folder: tickets
 
-![DeployCF](/images/3.connect/49.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/49.png) 
 
 - Mở rộng phần: Endpoint settings
 - Chọn Use endpoint connection checkbox, điền addColumnName=true trong Extra connection attributes box
-![DeployCF](/images/3.connect/50.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/50.png) 
 
 - Mở rộng Test endpoint connection (optional). chọn VPC.
 
 - Chọn Run test. Bước này kết nối với source database. Nếu thành công sẽ hiển thị thông báo "Connection tested successfully"
-![DeployCF](/images/3.connect/51.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/51.png) 
 
 2. Chọn Create Endpoint. Khi đã sẵn sàng, trạng thái endpoint sẽ chuyển thành active
 
 ### Tạo task initial full copy
 1. Tại DMS console, chọn Database Migration Tasks.
-![DeployCF](/images/3.connect/52.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/52.png) 
 
 2. Chọn Create Task.
 
@@ -132,45 +132,45 @@ Link GitHub của lab - [https://github.com/aws-samples/data-engineering-for-aws
 - Chọn Target endpoint
 - Migration type: Migrate existing data.
 
-![DeployCF](/images/3.connect/53.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/53.png) 
 
 - Mở rộng **Task Settings**
 - Chọn **Turn on CloudWatch logs** checkbox
 
-![DeployCF](/images/3.connect/54.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/54.png) 
 
 - Tại Table Mappings
 - Chọn **Add new selection rule** và chọn **Enter a Schema** tại Schema field
 - Tại **Source name**: dms_sample
 - Để tất cả field còn lại mặc định.
-![DeployCF](/images/3.connect/55.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/55.png) 
 
 3. Chọn **Create task**. Task sẽ được tạo và tự động start
 
 4. Chọn task và xem chi tiết.
-![DeployCF](/images/3.connect/56.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/56.png) 
 
-![DeployCF](/images/3.connect/57.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/57.png) 
 
 5. Khi hoàn thành, task console hiển thị 100% progress
-![DeployCF](/images/3.connect/58.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/58.png) 
 
 6. Mở  S3 console và xem data được copy bởi DMS
-![DeployCF](/images/3.connect/59.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/59.png) 
 
 7. Review data bằng S3 select
 
-![DeployCF](/images/3.connect/60.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/60.png) 
 
-![DeployCF](/images/3.connect/61.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/61.png) 
 
 
-![DeployCF](/images/3.connect/62.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/62.png) 
 
 ### Tạo CDC endpoint để replicate các thay đổi diễn ra
 
 1. Tại DMS console, chọn [Endpoints](https://console.aws.amazon.com/dms/v2/home#createNewEndpoint)
-![DeployCF](/images/3.connect/64.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/64.png) 
  
 2. Nhấn **Create endpoint**
 - Endpoint type: Target
@@ -179,27 +179,27 @@ Link GitHub của lab - [https://github.com/aws-samples/data-engineering-for-aws
 - Service Access Role ARN: DMSLabRoleS3
 - Bucket name: Chọn S3 Bucketname
 - Bucket folder: cdc
-![DeployCF](/images/3.connect/65.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/65.png) 
 
 - Mở rộng phần **Endpoint settings**
 
 - Tích vào checkbox **Use endpoint connection attributes** và nhập addColumnName=true. Thuộc tính này bao gồm tên cột từ dữ liệu nguồn.
-![DeployCF](/images/3.connect/66.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/66.png) 
 
 - Mở rộng phần **Test endpoint connection (optional)**, chọn VPC name.
 - Click **Run test**. Nếu thành công sẽ hiển thị thông báo "Connection tested successfully".
 
 
 3. Chọn **Create endpoint**
-![DeployCF](/images/3.connect/67.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/67.png) 
 
 4. Khi sẵn sàng, endpoint status chuyển sang active.
 
-![DeployCF](/images/3.connect/68.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/68.png) 
 
 ### Tạo task replication liên tục.
 1. Tại DMS console, chọn **Database Migration Tasks**
-![DeployCF](/images/3.connect/69.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/69.png) 
 2. Chọn **Create Task**
 - Task Identifier: cdctask
 - Chọn Replication instance
@@ -207,35 +207,35 @@ Link GitHub của lab - [https://github.com/aws-samples/data-engineering-for-aws
 - Chọn Target endpoint: rds-cdc-endpoint
 - Chọn Migration type: **Replicate data changes only.**
 
-![DeployCF](/images/3.connect/70.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/70.png) 
 
 - Trong **Task Settings**, Chọn **Turn on CloudWatch logs** checkbox
 
-![DeployCF](/images/3.connect/71.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/71.png) 
 
 - Chuyển đến **Table Mappings**
 
 - Chọn ** Add new selection rule ** và Chọn **Enter a Schema** tại Schema field
 
 - Tại **Source name**, chọn dms_sample. Tất cả còn lại để mặc định
-![DeployCF](/images/3.connect/72.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/72.png) 
 
 3. Chọn Create task. Task sẽ được tạo và tự động chạy. Chúng ta có thể thấy trạng thái là Replication ongoing.
-![DeployCF](/images/3.connect/73.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/73.png) 
 
 4. Đợi 5 đến 10 phút để CDC data ánh xạ RDS postgres database
 
 5. Chọn CDC task để xem chi tiết, xem phần **Table statistics**:
-![DeployCF](/images/3.connect/74.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/74.png) 
 
 6. Mở S3 console và xem CDC data được copied từ DMS
 
-![DeployCF](/images/3.connect/75.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/75.png) 
 
 7. Chọn 1 file và sử dụng [ S3 Select ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/selecting-content-from-objects.html)
 
-![DeployCF](/images/3.connect/76.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/76.png) 
 
-![DeployCF](/images/3.connect/77.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/77.png) 
 
-![DeployCF](/images/3.connect/78.png) 
+![DeployCF](/WorkShopTwo/images/3.connect/78.png) 

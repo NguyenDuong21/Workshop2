@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Athena Federated query on AWS System Manager</title>
-    <link>//localhost:1313/5-labqueryandvisualize/5.2-athenafederatedquery/</link>
+    <link>https://nguyenduong21.github.io/WorkShopTwo/5-labqueryandvisualize/5.2-athenafederatedquery/</link>
     <description>Recent content in Athena Federated query on AWS System Manager</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="//localhost:1313/5-labqueryandvisualize/5.2-athenafederatedquery/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://nguyenduong21.github.io/WorkShopTwo/5-labqueryandvisualize/5.2-athenafederatedquery/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
